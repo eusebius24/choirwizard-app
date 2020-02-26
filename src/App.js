@@ -1,9 +1,14 @@
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import Main from './Main';
+
 
 function App() {
   return (
     <main className='App'>
-      <h1>ChoirWizard!</h1>
+      <BrowserRouter>
+        <Main />
+      </BrowserRouter>
     </main>
   );
 }
