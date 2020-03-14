@@ -9,8 +9,13 @@ import SearchForm from './SearchForm';
 import SearchResults from './SearchResults';
 import ViewAll from './ViewAll';
 import IndivItem from './IndivItem';
+import LoginPage from './LoginPage';
+// import PrivateRoute from '../Utils/PrivateRoute'
+// import PublicOnlyRoute from '../Utils/PublicOnlyRoute'
+import NotFound from './NotFound'
 
 class Main extends React.Component {
+    
     render() {
         return (
             <Switch>
@@ -23,7 +28,10 @@ class Main extends React.Component {
                 <Route path = "/search-results" component={SearchResults} />
                 <Route path = "/view-all" component={ViewAll} />
                 <Route path="/indiv-item" component={IndivItem} />
+                <Route path="/login-form" component={LoginPage} />
+                <Route component={NotFound} />
             </Switch>
+
         );
     }
 }

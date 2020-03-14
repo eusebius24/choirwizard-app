@@ -169,3 +169,11 @@ div.checkboxes input {
 .display-none {
     display: none;
 }
+
+.red {
+    color: red;
+}
+
+.top {
+    margin-top: 200px;
+}
