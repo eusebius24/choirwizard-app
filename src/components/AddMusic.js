@@ -7,12 +7,16 @@ import ChoirWizardContext from '../context/ChoirWizardContext';
 import config from '../config'
 
 class AddMusic extends React.Component {
-    static contextType = ChoirWizardContext;
-    state = {
-        error: null,
-        records: []
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            error: null,
+            records: []
+        }
     }
    
+   static contextType = ChoirWizardContext;
     handleOnClickCancel() {
         const history = createBrowserHistory();
         history.goBack()
@@ -21,7 +25,8 @@ class AddMusic extends React.Component {
     handleSubmit = e => {
         e.preventDefault();
         console.log('You clicked submit!');
-        console.log('records:', this.context.records);
+        console.log('context:', this.context);
+        console.log('e.target:', e.target);
         const { title, composer, arranger, language, voices, numCopies, accompaniment, notes } = e.target
         const newRecord = {
             id: '',
@@ -56,10 +61,10 @@ class AddMusic extends React.Component {
             title.value = '';
             composer.value = '';
             arranger.value = '';
-            lang.value = '';
+            language.value = '';
             voices.value = '';
             numCopies.value = '';
-            instrumentation.value = '';
+            accompaniment.value = '';
             notes.value = '';
             this.context.addRecord(newRecord);
             this.props.history.push('/')
