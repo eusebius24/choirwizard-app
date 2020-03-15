@@ -1,8 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class IndivRecord extends React.Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            record: this.props.record,
+        }
     }
     render() {
         return (
@@ -17,6 +22,13 @@ class IndivRecord extends React.Component {
                             <li>Instrumentation: {this.props.record.instrumentation}</li>
                             <li>Notes: {this.props.record.notes}</li>
                         </ul>
+                        <Link to={{ pathname: '/edit-music',
+                        state: {
+                            record: this.props.record
+                        }
+                        }}>
+                            <button className="general-button small-button">Edit item</button>
+                        </Link>
                         <hr />
                     </div>
         );

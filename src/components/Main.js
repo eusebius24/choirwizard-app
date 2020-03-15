@@ -10,6 +10,7 @@ import SearchResults from './SearchResults';
 import ViewAll from './ViewAll';
 import IndivItem from './IndivItem';
 import LoginPage from './LoginPage';
+import EditMusic from './EditMusic';
 // import PrivateRoute from '../Utils/PrivateRoute'
 // import PublicOnlyRoute from '../Utils/PublicOnlyRoute'
 import NotFound from './NotFound'
@@ -29,6 +30,7 @@ class Main extends React.Component {
                 <Route path = "/view-all" component={ViewAll} />
                 <Route path="/indiv-item" component={IndivItem} />
                 <Route path="/login-form" component={LoginPage} />
+                <Route path="/edit-music" component={EditMusic} />
                 <Route component={NotFound} />
             </Switch>
 

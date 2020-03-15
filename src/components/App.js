@@ -21,6 +21,29 @@ class App extends React.Component {
     })
   }
 
+  updateRecord = record => {
+    console.log('record:', record);
+    const updatedRecords = this.state.records.map(rec => {
+     if(rec.id === parseInt(record.id)) {
+       rec.title = record.title;
+       rec.composer = record.composer;
+       rec.arranger = record.arranger;
+       rec.voicing = record.voicing;
+       rec.number_copies = record.number_copies;
+       rec.instrumentation = record.instrumentation;
+      rec.lang = record.lang;
+      rec.notes = record.notes;
+      return rec;
+     } else {
+       return rec;
+     }
+    })
+    console.log('updatedRecords:', updatedRecords);
+    this.setState({
+      records: updatedRecords
+    })
+  }
+
   componentDidMount() {
     fetch(`${config.API_ENDPOINT}/music/`)
     .then(res => {

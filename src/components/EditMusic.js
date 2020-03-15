@@ -8,13 +8,14 @@ import config from '../config'
 import { Redirect } from 'react-router-dom';
 import IndivItem from '../components/IndivItem'
 
-class AddMusic extends React.Component {
+class EditMusic extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
             error: null,
-            records: []
+            records: [],
+            toViewAll: false
         }
     }
    
@@ -29,9 +30,12 @@ class AddMusic extends React.Component {
         console.log('You clicked submit!');
         console.log('context:', this.context);
         console.log('e.target:', e.target);
+        console.log('this.props.record:', this.props.location.state)
+        const history = createBrowserHistory();
+        const { record } = this.props.location.state
         const { title, composer, arranger, language, voices, numCopies, accompaniment, notes } = e.target
-        const newRecord = {
-            id: '',
+        const updatedRecord = {
+            id: record.id,
             title: title.value,
             composer: composer.value, 
             arranger: arranger.value,
@@ -39,13 +43,13 @@ class AddMusic extends React.Component {
             voicing: voices.value,
             number_copies: numCopies.value,
             instrumentation: accompaniment.value,
-            notes: notes.value,
+            notes: notes.value
         }
-        console.log(newRecord);
-        
-        fetch(`http://localhost:8000/api/music`, {
-            method: 'POST',
-            body: JSON.stringify(newRecord),
+        console.log(updatedRecord);
+        const recordId = updatedRecord.id;
+        fetch(`http://localhost:8000/api/music/${recordId}`, {
+            method: 'PATCH',
+            body: JSON.stringify(updatedRecord),
             headers: {
                 'content-type': 'application/json',
             }
@@ -70,8 +74,11 @@ class AddMusic extends React.Component {
             numCopies.value = null;
             accompaniment.value = '';
             notes.value = '';
-            this.context.addRecord(newRecord);
-            this.props.history.push('/view-all')
+            
+            this.context.updateRecord(updatedRecord);
+            this.setState({
+                toViewAll: true
+            })
         })
         .catch(error => {
             this.setState({ error });
@@ -85,32 +92,40 @@ class AddMusic extends React.Component {
 
     render() {
         const { error } = this.state;
+        console.log("record:", this.props.location.state);
+        const { record } = this.props.location.state;
+        console.log('toViewAll:', this.state.toViewAll);
+        if(this.state.toViewAll === true) {
+            return(
+                <Redirect to="/view-all" />
+            );
+        }
         return (
             <div className="container">
                 <NavBar />
                 <header className="main-header">
-                    <h1>Add Music</h1>
+                    <h1>Edit Music</h1>
                 </header>
                 <section>
-                    <form id="add-music-form" onSubmit={this.handleSubmit}>
+                    <form id="edit-music-form" onSubmit={this.handleSubmit}>
                         <div className='Add__error' role='alert'>
                             {error && <p>{error.message}</p>}
                         </div>
                         <div className="form-section">
                             <label htmlFor="title">Title</label>
-                            <input type="text" id="title" placeholder="Title of piece" required />
+                            <input type="text" id="title" defaultValue={record.title} required />
                         </div>
                         <div className="form-section">
                             <label htmlFor="composer">Composer</label>
-                            <input type="text" id="composer" placeholder="Composer" />
+                            <input type="text" id="composer" defaultValue={record.composer} />
                         </div>
                         <div className="form-section">
                             <label htmlFor="title">Arranger</label>
-                            <input type="text" id="arranger" placeholder="Arranger" />
+                            <input type="text" id="arranger" defaultValue={record.arranger} />
                         </div>
                         <div className="form-section">
                             <label htmlFor="language">Language</label>
-                            <input type="text" id="language" placeholder="English" />
+                            <input type="text" id="language" defaultValue={record.lang} />
                         </div>
                         {/* <div class="form-section">
                             <label htmlFor="period">Style or period</label>
@@ -130,7 +145,7 @@ class AddMusic extends React.Component {
                         </div> */}
                         <div className="form-section">
                             <label htmlFor="voices">Voices</label>
-                            <select name="voices" id="voices">
+                            <select name="voices" id="voices" defaultValue={record.voicing}>
                                 <option value="">--Please choose an option--</option>
                                 <option value="SA">SA</option>
                                 <option value="SSA">SSA</option>
@@ -144,11 +159,11 @@ class AddMusic extends React.Component {
                          </div>
                          <div className="form-section">
                          <label htmlFor="numCopies">Number of Copies</label>
-                            <input type="number" className="input-number" id="numCopies" placeholder={10} defaultValue = {null} />
+                            <input type="number" className="input-number" id="numCopies"  defaultValue = {record.number_copies} />
                          </div>
                          <div className="form-section">
                             <label htmlFor="accompaniment">Accompaniment</label>
-                            <select name="accompaniment" id="accompaniment">
+                            <select name="accompaniment" id="accompaniment" defaultValue={record.instrumentation}>
                                 <option value="">--Please choose an option--</option>
                                 <option value="piano">Piano</option>
                                 <option value="organ">Organ</option>
@@ -159,7 +174,7 @@ class AddMusic extends React.Component {
                         </div> 
                             <div className="form-section">
                             <label htmlFor="notes">Notes</label>
-                            <textarea id="notes" placeholder="Please enter any notes here" />
+                            <textarea id="notes" defaultValue={record.notes} />
                         </div>
                             {/* <Link to="/indiv-item"> */}
                                 <button className = "general-button" type="submit">Submit</button>
@@ -174,4 +189,4 @@ class AddMusic extends React.Component {
 
 }
 
-export default AddMusic;
+export default EditMusic;

@@ -6,6 +6,9 @@ import './App.css';
 import { createBrowserHistory } from 'history';
 
 class IndivItem extends React.Component {
+    constructor(props) {
+        super(props);
+    }
     handleOnClickCancel() {
         const history = createBrowserHistory();
         history.goBack()
@@ -17,26 +20,26 @@ class IndivItem extends React.Component {
     }
     
     render() {
+        console.log(this.props);
         return (
             <div className="container">
                 <NavBar />
                 <header className="main-header">
-                    <h1>Item: Norwegian Alleluia</h1>
+                    <h1>Item: {this.props.title}</h1>
                 </header>
-                <div class="search-result">
-                        <h3>Norwegian Alleluia</h3>
+                <div className="search-result">
+                        <h3>{this.props.title}</h3>
                         <ul>
-                            <li>Composer: Kim Andre Arnesen</li>
-                            <li>Arranger: </li>
-                            <li>Language: Latin</li>
-                            <li>Period: Contemporary</li>
-                            <li>Voices: SATB</li>
-                            <li>Number of Copies: 30</li>
-                            <li>Accompaniment: A cappella</li>
-                            <li>Notes: Could use percussion here</li>
+                            <li>Composer: {this.props.composer}</li>
+                            <li>Arranger: {this.props.arranger}</li>
+                            <li>Language: {this.props.lang}</li>
+                            <li>Voices: {this.props.voicing}</li>
+                            <li>Number of Copies: {this.props.number_copies}</li>
+                            <li>Accompaniment: {this.props.instrumentation}</li>
+                            <li>Notes: {this.props.notes}</li>
                         </ul>
-                        <Link to="/add-music">
-                            <button class="general-button small-button">Edit item</button>
+                        <Link to="/edit-music" params={{ record: this.props }}>
+                            <button className="general-button small-button">Edit item</button>
                         </Link>
                         <button className="general-button small-button" type="reset" onClick={this.handleOnClickCancel}>Go Back</button>
                        
