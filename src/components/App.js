@@ -4,7 +4,7 @@ import Main from './Main';
 import NavBar from './NavBar'
 import config from '../config'
 import ChoirWizardContext from '../context/ChoirWizardContext'
-
+import { createBrowserHistory } from 'history';
 
 
 class App extends React.Component {
@@ -44,6 +44,43 @@ class App extends React.Component {
     })
   }
 
+  deleteRecord = (recordID) => {
+    const history = createBrowserHistory();
+    history.push('/home');
+    const newRecords = this.state.records.filter(record => {
+      return record.id !== recordID
+    })
+
+    this.setState({
+      records: newRecords,
+    })
+  }
+
+  deleteItemRequest = (recordID, callback) => {
+    const history = createBrowserHistory();
+    console.log('You clicked delete item!');
+    // alert('This action cannot be undone!');
+    fetch(`${config.API_ENDPOINT}/music/${recordID}`, {
+      method: 'DELETE',
+      headers: {
+        'content-type': 'application/json',
+      }
+    })
+      .then(res => {
+        if(!res.ok) {
+          return res.json().then(error => {
+            throw error
+          })
+        }
+      })
+      .then(data => {
+        callback(recordID)
+      })
+      .catch(error => {
+        console.error(error)
+      })
+  }
+
   componentDidMount() {
     fetch(`${config.API_ENDPOINT}/music/`)
     .then(res => {
@@ -64,6 +101,7 @@ class App extends React.Component {
     const contextValue = {
       records: this.state.records,
       addRecord: this.addRecord,
+      deleteItemRequest: this.deleteItemRequest,
     }
     return (
       <main className='App'>

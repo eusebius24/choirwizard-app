@@ -41,7 +41,8 @@ class IndivItem extends React.Component {
                         <Link to="/edit-music" params={{ record: this.props }}>
                             <button className="general-button small-button">Edit item</button>
                         </Link>
-                        <button className="general-button small-button" type="reset" onClick={this.handleOnClickCancel}>Go Back</button>
+                        
+                        <button className="general-button small-button" type="button" onClick={this.handleOnClickCancel}>Delete Item</button>
                        
                         <hr />
                     </div>
