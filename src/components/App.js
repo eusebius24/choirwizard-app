@@ -46,7 +46,7 @@ class App extends React.Component {
 
   deleteRecord = (recordID) => {
     const history = createBrowserHistory();
-    history.push('/home');
+    
     const newRecords = this.state.records.filter(record => {
       return record.id !== recordID
     })
@@ -54,11 +54,13 @@ class App extends React.Component {
     this.setState({
       records: newRecords,
     })
+    history.push('/home');
   }
 
   deleteItemRequest = (recordID, callback) => {
     const history = createBrowserHistory();
     console.log('You clicked delete item!');
+    console.log('recordID:', recordID);
     // alert('This action cannot be undone!');
     fetch(`${config.API_ENDPOINT}/music/${recordID}`, {
       method: 'DELETE',
@@ -72,6 +74,7 @@ class App extends React.Component {
             throw error
           })
         }
+        console.log(res.status);
       })
       .then(data => {
         callback(recordID)
@@ -102,6 +105,7 @@ class App extends React.Component {
       records: this.state.records,
       addRecord: this.addRecord,
       deleteItemRequest: this.deleteItemRequest,
+      deleteRecord: this.deleteRecord
     }
     return (
       <main className='App'>
