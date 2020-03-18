@@ -17,12 +17,21 @@ class SearchForm extends React.Component {
         history.goBack()
     }
 
-    handleSubmit(e) {
+    handleSubmit = (e) => {
         e.preventDefault();
         console.log('context:', this.context);
+        const { records } = this.context;
+        console.log('records:', records);
         const { id, title, composer, arranger, language, voices, numCopies, piano, organ, aCappella, instrument, notes } = e.target;
-        // const searchResults = records.filter(record => parseFloat(id) === record.id);
-        // console.log('searchResults:', searchResults);
+        const searchResults = [];
+        for (let i=0; i<records.length; i++) {
+            console.log(records[i].id);
+            if(parseInt(records[i].id) === parseInt(id)) {
+                searchResults.push(records[i]);
+            }
+        }
+
+        console.log('searchResults:', searchResults);
         
 
     }
