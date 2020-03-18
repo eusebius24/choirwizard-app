@@ -31,14 +31,14 @@ class SearchResults extends React.Component {
                             <li>Notes: Body percussion</li>
                         </ul>
                         <Link to="/indiv-item">
-                            <button class="general-button small-button">View item</button>
+                            <button className="general-button small-button">View item</button>
                         </Link>
                         <Link to="/add-music">
-                            <button class="general-button small-button">Edit item</button>
+                            <button className="general-button small-button">Edit item</button>
                         </Link>
                         <hr />
                     </div>
-                    <div class="search-result">
+                    <div className="search-result">
                         <h3>Light of a Clear Blue Morning</h3>
 
                         <ul>
@@ -52,10 +52,10 @@ class SearchResults extends React.Component {
                             <li>Notes: Small group and soloist</li>
                         </ul>
                         <Link to="/indiv-item">
-                            <button class="general-button small-button">View item</button>
+                            <button className="general-button small-button">View item</button>
                         </Link>
                         <Link to="/add-music">
-                            <button class="general-button small-button">Edit item</button>
+                            <button className="general-button small-button">Edit item</button>
                         </Link>
                         <hr />
 

@@ -36,7 +36,7 @@ class IndivRecord extends React.Component {
                         }}>
                             <button className="general-button small-button">Edit item</button>
                         </Link>
-                        <button className="general-button small-button" onClick={() => this.context.deleteItemRequest(this.state.record.id, this.context.deleteRecord)}>Delete item</button>
+                        <button className="general-button small-button" onClick={() => this.context.deleteItemRequest(this.props.record.id, this.context.deleteRecord)}>Delete item</button>
                         <hr />
                     </div>
         );

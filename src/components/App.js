@@ -22,6 +22,7 @@ class App extends React.Component {
   }
 
   updateRecord = record => {
+    const history = createBrowserHistory();
     console.log('record:', record);
     const updatedRecords = this.state.records.map(rec => {
      if(rec.id === parseInt(record.id)) {
@@ -42,6 +43,7 @@ class App extends React.Component {
     this.setState({
       records: updatedRecords
     })
+    history.push('/view-all');
   }
 
   deleteRecord = (recordID) => {
@@ -70,18 +72,23 @@ class App extends React.Component {
     })
       .then(res => {
         if(!res.ok) {
-          return res.json().then(error => {
-            throw error
-          })
+          return res.json().then(error => Promise.reject(error))
         }
-        console.log(res.status);
+        
       })
-      .then(data => {
+      
+      
+      .then(() => {
         callback(recordID)
       })
       .catch(error => {
         console.error(error)
       })
+  }
+
+  searchRequest = (e, searchTerm) => {
+    e.preventDefault();
+    console.log(`You clicked search!`);
   }
 
   componentDidMount() {
@@ -105,7 +112,8 @@ class App extends React.Component {
       records: this.state.records,
       addRecord: this.addRecord,
       deleteItemRequest: this.deleteItemRequest,
-      deleteRecord: this.deleteRecord
+      deleteRecord: this.deleteRecord,
+      searchRequest: this.searchRequest,
     }
     return (
       <main className='App'>

@@ -6,6 +6,7 @@ const ChoirWizardContext = React.createContext({
     editRecord: () => {},
     deleteItemRequest: () => {},
     deleteRecord: () => {},
+    searchRequest: () => {},
 }) 
 
 export default ChoirWizardContext;

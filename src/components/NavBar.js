@@ -43,7 +43,6 @@ class NavBar extends React.Component {
                 <ul>
                     <NavLink to="/home"><li>Home</li></NavLink> 
                     <NavLink to="/"><li>About</li></NavLink> 
-                    <NavLink to="/create-catalogue"><li>Create Catalogue</li></NavLink> 
                     <NavLink to="/add-music"><li>Add Music</li></NavLink> 
                     <NavLink to="/search-form"><li>Search for Music</li></NavLink> 
                     {TokenService.hasAuthToken()

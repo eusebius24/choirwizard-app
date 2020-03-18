@@ -31,7 +31,6 @@ class AddMusic extends React.Component {
         console.log('e.target:', e.target);
         const { title, composer, arranger, language, voices, numCopies, accompaniment, notes } = e.target
         const newRecord = {
-            id: '',
             title: title.value,
             composer: composer.value, 
             arranger: arranger.value,
@@ -70,7 +69,7 @@ class AddMusic extends React.Component {
             numCopies.value = null;
             accompaniment.value = '';
             notes.value = '';
-            this.context.addRecord(newRecord);
+            this.context.addRecord(data);
             this.props.history.push('/view-all')
         })
         .catch(error => {

@@ -23,11 +23,6 @@ class Home extends React.Component {
                     
                     <div className= "cat-list">
                         <h3>Chamber Choir Catalogue</h3>
-                        <p>[placeholder for screenshot of catalogue]</p>
-                        <Link to="/view-all">
-                            <button className = 'general-button small-button' >Browse This Catalogue</button>
-                        </Link>
-                        <h3>Catalogue Title</h3>
                         <Link to="/view-all">
                             <button className = 'general-button small-button' >Browse This Catalogue</button>
                         </Link>
@@ -39,9 +34,6 @@ class Home extends React.Component {
                     </Link>
                     <Link to="/add-music">
                         <button className = 'general-button' >Add Music to Catalogue</button>
-                    </Link>
-                    <Link to="/create-catalogue">
-                        <button className = 'general-button' >Create New Catalogue</button>
                     </Link>
                  </section>
                 <Footer />

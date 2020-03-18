@@ -31,7 +31,7 @@ class EditMusic extends React.Component {
         console.log('context:', this.context);
         console.log('e.target:', e.target);
         console.log('this.props.record:', this.props.location.state)
-        const history = createBrowserHistory();
+        // const history = createBrowserHistory();
         const { record } = this.props.location.state
         const { title, composer, arranger, language, voices, numCopies, accompaniment, notes } = e.target
         const updatedRecord = {
@@ -45,7 +45,7 @@ class EditMusic extends React.Component {
             instrumentation: accompaniment.value,
             notes: notes.value
         }
-        console.log(updatedRecord);
+        console.log("updatedRecord:", updatedRecord);
         const recordId = updatedRecord.id;
         fetch(`http://localhost:8000/api/music/${recordId}`, {
             method: 'PATCH',
@@ -83,6 +83,7 @@ class EditMusic extends React.Component {
         .catch(error => {
             this.setState({ error });
         })
+        this.props.history.push('/view-all')
     }
     
 
@@ -95,11 +96,6 @@ class EditMusic extends React.Component {
         console.log("record:", this.props.location.state);
         const { record } = this.props.location.state;
         console.log('toViewAll:', this.state.toViewAll);
-        if(this.state.toViewAll === true) {
-            return(
-                <Redirect to="/view-all" />
-            );
-        }
         return (
             <div className="container">
                 <NavBar />
