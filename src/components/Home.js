@@ -15,8 +15,6 @@ class Home extends React.Component {
                 <NavBar />
                 <header className="main-header"> 
                     <h1>Your ChoirWizard Home Page!</h1>
-                    <h2>Welcome, Rachel</h2>
-                    
                 </header>
                 <section>
                     <h2>Your Catalogues</h2>

@@ -1,12 +1,8 @@
 import React from 'react';
 import NavBar from './NavBar';
 import Footer from './Footer';
-import { Link } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import ChoirWizardContext from '../context/ChoirWizardContext';
-import config from '../config'
-import { Redirect } from 'react-router-dom';
-import IndivItem from '../components/IndivItem'
 
 class EditMusic extends React.Component {
     constructor(props) {
@@ -25,13 +21,8 @@ class EditMusic extends React.Component {
         history.goBack()
     }
 
-    handleSubmit = e => {
+    handleSubmit = (e) => {
         e.preventDefault();
-        console.log('You clicked submit!');
-        console.log('context:', this.context);
-        console.log('e.target:', e.target);
-        console.log('this.props.record:', this.props.location.state)
-        // const history = createBrowserHistory();
         const { record } = this.props.location.state
         const { title, composer, arranger, language, voices, numCopies, accompaniment, notes } = e.target
         const updatedRecord = {
@@ -47,43 +38,8 @@ class EditMusic extends React.Component {
         }
         console.log("updatedRecord:", updatedRecord);
         const recordId = updatedRecord.id;
-        fetch(`http://localhost:8000/api/music/${recordId}`, {
-            method: 'PATCH',
-            body: JSON.stringify(updatedRecord),
-            headers: {
-                'content-type': 'application/json',
-            }
-        })
-        .then(res => {
-            console.log("res:", res);
-            if (!res.ok) {
-                
-                return res.json().then(error => {
-                    throw error
-                })
-
-            }
-            return res.json();
-        })
-        .then(data => {
-            title.value = '';
-            composer.value = '';
-            arranger.value = '';
-            language.value = '';
-            voices.value = '';
-            numCopies.value = null;
-            accompaniment.value = '';
-            notes.value = '';
-            
-            this.context.updateRecord(updatedRecord);
-            this.setState({
-                toViewAll: true
-            })
-        })
-        .catch(error => {
-            this.setState({ error });
-        })
-        this.props.history.push('/view-all')
+        this.context.updateItemRequest(updatedRecord, recordId);
+        this.props.history.push('/view-all');
     }
     
 
@@ -123,22 +79,7 @@ class EditMusic extends React.Component {
                             <label htmlFor="language">Language</label>
                             <input type="text" id="language" defaultValue={record.lang} />
                         </div>
-                        {/* <div class="form-section">
-                            <label htmlFor="period">Style or period</label>
-                            <select name="period" id="period">
-                                <option value="">--Please choose an option--</option>
-                                <option value="Renaissance">Renaissance</option>
-                                <option value="Baroque">Baroque</option>
-                                <option value="Classical">Classical</option>
-                                <option value="Romantic">Romantic</option>
-                                <option value="20th Century">20th Century</option>
-                                <option value="Spiritual">Spiritual</option>
-                                <option value="Contemporary">Contemporary</option>
-                                <option value="Gospel">Gospel</option>
-                                <option value="Hymn">Hymn</option>
-                                <option value="Pop/Rock/Praise">Pop/Rock/Praise</option>
-                            </select>
-                        </div> */}
+                       
                         <div className="form-section">
                             <label htmlFor="voices">Voices</label>
                             <select name="voices" id="voices" defaultValue={record.voicing}>

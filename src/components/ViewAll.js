@@ -2,8 +2,6 @@ import React from 'react';
 import NavBar from './NavBar';
 import Footer from './Footer';
 import './App.css';
-import ChoirMusicApiService from '../services/choirmusic-api-service'
-import config from '../config'
 import IndivRecord from './IndivRecord'
 import ChoirWizardContext from '../context/ChoirWizardContext'
 
@@ -49,7 +47,6 @@ class ViewAll extends React.Component {
                 <section>
                     {(!records) ? "loading..." :
                     recordsList}
-                    <button className="general-button">Next Page</button>
                 </section>
                 <Footer />
             </div>

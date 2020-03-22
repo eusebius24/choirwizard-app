@@ -21,6 +21,32 @@ class App extends React.Component {
     })
   }
 
+  updateItemRequest = (updatedRecord, recordId) => {
+    const history = createBrowserHistory();
+    fetch(`${config.API_ENDPOINT}/music/${recordId}`, {
+      method: 'PATCH',
+      body: JSON.stringify(updatedRecord),
+      headers: {
+          'content-type': 'application/json',
+      }
+  })
+  .then(res => {
+      console.log("res:", res);
+      if (!res.ok) {        
+        return res.json().then(error => {
+            throw error
+        })
+    }
+    return res.json();
+  })
+  .then(
+      this.updateRecord(updatedRecord)
+  )
+  .catch(error => {
+      this.setState({ error });
+  })
+}
+
   updateRecord = record => {
     const history = createBrowserHistory();
     console.log('record:', record);
@@ -32,8 +58,8 @@ class App extends React.Component {
        rec.voicing = record.voicing;
        rec.number_copies = record.number_copies;
        rec.instrumentation = record.instrumentation;
-      rec.lang = record.lang;
-      rec.notes = record.notes;
+       rec.lang = record.lang;
+       rec.notes = record.notes;
       return rec;
      } else {
        return rec;
@@ -43,7 +69,7 @@ class App extends React.Component {
     this.setState({
       records: updatedRecords
     })
-    history.push('/view-all');
+    
   }
 
   deleteRecord = (recordID) => {
@@ -61,9 +87,7 @@ class App extends React.Component {
 
   deleteItemRequest = (recordID, callback) => {
     const history = createBrowserHistory();
-    console.log('You clicked delete item!');
-    console.log('recordID:', recordID);
-    // alert('This action cannot be undone!');
+
     fetch(`${config.API_ENDPOINT}/music/${recordID}`, {
       method: 'DELETE',
       headers: {
@@ -73,22 +97,14 @@ class App extends React.Component {
       .then(res => {
         if(!res.ok) {
           return res.json().then(error => Promise.reject(error))
-        }
-        
-      })
-      
-      
+        } 
+    })
       .then(() => {
         callback(recordID)
       })
       .catch(error => {
         console.error(error)
       })
-  }
-
-  searchRequest = (e, searchTerm) => {
-    e.preventDefault();
-    console.log(`You clicked search!`);
   }
 
   componentDidMount() {
@@ -113,7 +129,7 @@ class App extends React.Component {
       addRecord: this.addRecord,
       deleteItemRequest: this.deleteItemRequest,
       deleteRecord: this.deleteRecord,
-      searchRequest: this.searchRequest,
+      updateItemRequest: this.updateItemRequest,
     }
     return (
       <main className='App'>

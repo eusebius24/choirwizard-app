@@ -15,8 +15,6 @@ class IndivRecord extends React.Component {
   
 
     render() {
-        console.log('context from indivRecord:', this.context);
-        console.log('id:', this.props.record.id)
         return (
             <div className="search-result">
                         <h3>{this.props.record.title}</h3>

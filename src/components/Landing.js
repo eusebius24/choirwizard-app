@@ -1,37 +1,13 @@
 import React from 'react';
-import NavBar from './NavBar';
 import Footer from './Footer';
 import { Link } from 'react-router-dom';
-import LoginModal from './LoginModal';
+
 
 class Landing extends React.Component {
     constructor() {
         super();
-        this.showModal = this.showModal.bind(this);
-        this.hideModal = this.hideModal.bind(this);
-        this.handleSubmitBasicAuth = this.handleSubmitBasicAuth.bind(this);
     }
-    state = { show: false }
-
-    showModal = () => {
-        this.setState({ show: true });
-        console.log("show:", this.state.show);
-    }
-
-    hideModal = () => {
-        this.setState({ show: false });
-    }
-
-     handleSubmitBasicAuth(ev) {
-        ev.preventDefault()
-        const { username, password } = ev.target
-
-        console.log('login form submitted');
-        console.log({ username, password })
-
-        this.hideModal()
-    }
-
+    
     render() {
         return (
             <main>
@@ -54,12 +30,9 @@ class Landing extends React.Component {
             <p>Receive a custom list of music that meets your criteria!</p>
         </section>
         <section>
-            <h2>Sign up now!</h2>
+            <h2>Try it out!</h2>
             <Link to="/home">
-                <button className="signup-button general-button">Sign up</button>
-            </Link>
-            <Link to="login-form">
-                <button className="general-button">Log in</button>
+                <button className="signup-button general-button">Go to home page</button>
             </Link>
         </section>
             <Footer />

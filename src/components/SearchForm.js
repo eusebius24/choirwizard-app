@@ -2,7 +2,6 @@ import React from 'react';
 import NavBar from './NavBar';
 import Footer from './Footer';
 import './App.css';
-import { Link } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import ChoirWizardContext from '../context/ChoirWizardContext'
 
@@ -18,24 +17,91 @@ class SearchForm extends React.Component {
     }
 
     handleSubmit = (e) => {
+        const history = createBrowserHistory();
         e.preventDefault();
-        console.log('context:', this.context);
-        const { records } = this.context;
-        console.log('records:', records);
-        const { id, title, composer, arranger, language, voices, numCopies, piano, organ, aCappella, instrument, notes } = e.target;
-        const searchResults = [];
-        for (let i=0; i<records.length; i++) {
-            console.log(records[i].id);
-            if(parseInt(records[i].id) === parseInt(id)) {
-                searchResults.push(records[i]);
+        const { id, title, composer, arranger, language, voices, numCopies, accompaniment, notes } = e.target
+       
+        const searchResults = this.context.records;
+        let newResults = [];
+        for (let i=0; i<searchResults.length; i++) {
+            if (parseInt(searchResults[i].id) === parseInt(id.value)) {
+                newResults.push(searchResults[i]);
             }
+
+        if(newResults.length > 0) {
+            this.props.history.push({
+                pathname: '/search-results',
+                state: { results: newResults }
+            })
+        }
+        
+    }
+       
+        for(let i=0; i<searchResults.length; i++) {
+            if (searchResults[i].composer.toLowerCase().includes(composer.value.toLowerCase())) {
+                newResults.push(searchResults[i]);
+            } 
+      
         }
 
-        console.log('searchResults:', searchResults);
+
+        let newResults2 = [];
+        for(let i=0; i<newResults.length; i++) {
+           if(newResults[i].title.toLowerCase().includes(title.value.toLowerCase())) {
+               newResults2.push(newResults[i]);
+           }
+        }
+         
+        let newResults3 = [];
+        for(let i=0; i<newResults2.length; i++) {
+           if(newResults2[i].arranger.toLowerCase().includes(arranger.value.toLowerCase())) {
+               newResults3.push(newResults2[i]);
+           }
+        }
+
+         let newResults4 = [];
+         for(let i=0; i<newResults3.length; i++) {
+            if(newResults3[i].voicing.toLowerCase().includes(voices.value.toLowerCase())) {
+                newResults4.push(newResults3[i]);
+            }
+         }
         
+          let newResults5 = [];
+          for(let i=0; i<newResults4.length; i++) {
+             if(newResults4[i].lang.toLowerCase().includes(language.value.toLowerCase())) {
+                 newResults5.push(newResults4[i]);
+             }
+          }
 
+           let newResults6 = [];
+           for(let i=0; i<newResults5.length; i++) {
+              if(parseInt(newResults5[i].number_copies) >= parseInt(numCopies.value)) {
+                  newResults6.push(newResults5[i]);
+              }
+           }
+
+            let newResults7 = [];
+            for(let i=0; i<newResults6.length; i++) {
+               if(newResults6[i].instrumentation.toLowerCase().includes('violin' || 'flute' || 'clarinet' || 'cello')) {
+                   newResults7.push(newResults6[i]);
+               }
+            }
+
+            let newResults8 = [];
+         for(let i=0; i<newResults7.length; i++) {
+            if(newResults7[i].notes.toLowerCase().includes(notes.value.toLowerCase())) {
+                newResults8.push(newResults7[i]);
+            }
+         }
+
+          this.props.history.push({
+            pathname: '/search-results',
+            state: { results: newResults8 }
+        })
+
+        newResults = [];
+        
     }
-
     componentDidMount() {
         window.scrollTo(0,0);
     }
@@ -70,22 +136,7 @@ class SearchForm extends React.Component {
                             <label htmlFor="language">Language</label>
                             <input type="text" id="language" placeholder="English" />
                         </div>
-                        {/* <div className="form-section">
-                            <label htmlFor="period">Style or period</label>
-                            <select name="period" id="period">
-                                <option value="">--Please choose an option--</option>
-                                <option value="Renaissance">Renaissance</option>
-                                <option value="Baroque">Baroque</option>
-                                <option value="Classical">Classical</option>
-                                <option value="Romantic">Romantic</option>
-                                <option value="20th Century">20th Century</option>
-                                <option value="Spiritual">Spiritual</option>
-                                <option value="Contemporary">Contemporary</option>
-                                <option value="Gospel">Gospel</option>
-                                <option value="Hymn">Hymn</option>
-                                <option value="Pop/Rock/Praise">Pop/Rock/Praise</option>
-                            </select>
-                        </div> */}
+                      
                         <div className="form-section">
                             <label htmlFor="voices">Voices</label>
                             <select name="voices" id="voices">
@@ -96,6 +147,8 @@ class SearchForm extends React.Component {
                                 <option value="SATB">SATB</option>
                                 <option value="SAB">SAB</option>
                                 <option value="SB">SB</option>
+                                <option value="TB">TB</option>
+                                <option value="TTBB">TTBB</option>
                                 <option value="Unison">Unison</option>
                                 <option value="Solo">Solo</option>
                             </select>
@@ -104,29 +157,19 @@ class SearchForm extends React.Component {
                             <label htmlFor="numCopies">Number of Copies</label>
                             <input type="number" 
                             className="input-number"
-                            id="numCopies" placeholder={10} />
+                            id="numCopies" placeholder={10} defaultValue={0} />
                         </div>
-                        <div className="form-section checkboxes">
-                            <h3>Accompaniment</h3>
-                            <div className = "checkbox-list">
-                                <div>
-                                    <input type="checkbox" id="piano" name="piano" defaultChecked />
-                                    <label htmlFor="piano">Piano</label>
-                                </div>
-                                <div>
-                                    <input type="checkbox" id="organ" name="organ" />
-                                    <label htmlFor="piano">Organ</label>
-                                </div>
-                                <div>
-                                    <input type="checkbox" id="aCappella" name="aCappella" />
-                                    <label htmlFor="aCappella">A cappella</label>
-                                </div>
-                                <div>
-                                    <input type="checkbox" id="instrument" name="instrument" />
-                                    <label htmlFor="instrument">Obbligato instrumental part</label>
-                                </div>
-                            </div>
-                           
+                        <div className="form-section">
+                            <label htmlFor=
+                            "accompaniment">Instrumentation</label>
+                            <select name = "accompaniment" id="accompaniment">
+                               
+                                    <option value="">--Please choose an option--</option>
+                                    <option value="piano"  >Piano</option>
+                                    <option value="organ"  >Organ</option>
+                                    <option value="unaccompanied">Unaccompanied</option>
+                                    <option value="violin flute clarinet instrument">Obbligato instrument</option>
+                               </select>  
                         </div>
                         <div className="form-section">
                             <label htmlFor="notes">Notes</label>
