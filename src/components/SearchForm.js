@@ -23,85 +23,108 @@ class SearchForm extends React.Component {
        
         const searchResults = this.context.records;
         let newResults = [];
-        for (let i=0; i<searchResults.length; i++) {
-            if (parseInt(searchResults[i].id) === parseInt(id.value)) {
-                newResults.push(searchResults[i]);
+        if(id.value) {
+            for (let i=0; i<searchResults.length; i++) {
+                if (parseInt(searchResults[i].id) === parseInt(id.value)) {
+                    newResults.push(searchResults[i]);
+                }
             }
-
-        if(newResults.length > 0) {
-            this.props.history.push({
-                pathname: '/search-results',
-                state: { results: newResults }
-            })
-        }
+            if(newResults.length > 0) {
+                this.props.history.push({
+                    pathname: '/search-results',
+                    state: { results: newResults }
+                })
+                return newResults;
+            } else if (newResults.length === 0) {
+                newResults = "Id not found";
+                this.props.history.push({
+                    pathname: '/search-results',
+                    state: { results: newResults }
+                })
+                return newResults;
         
-    }
-       
-        for(let i=0; i<searchResults.length; i++) {
-            if (searchResults[i].composer.toLowerCase().includes(composer.value.toLowerCase())) {
-                newResults.push(searchResults[i]);
             } 
-      
-        }
-
-
-        let newResults2 = [];
-        for(let i=0; i<newResults.length; i++) {
-           if(newResults[i].title.toLowerCase().includes(title.value.toLowerCase())) {
-               newResults2.push(newResults[i]);
-           }
-        }
-         
-        let newResults3 = [];
-        for(let i=0; i<newResults2.length; i++) {
-           if(newResults2[i].arranger.toLowerCase().includes(arranger.value.toLowerCase())) {
-               newResults3.push(newResults2[i]);
-           }
-        }
-
-         let newResults4 = [];
-         for(let i=0; i<newResults3.length; i++) {
-            if(newResults3[i].voicing.toLowerCase().includes(voices.value.toLowerCase())) {
-                newResults4.push(newResults3[i]);
+        } else {
+            for(let i=0; i<searchResults.length; i++) {
+                if (searchResults[i].composer.toLowerCase().includes(composer.value.toLowerCase())) {
+                    newResults.push(searchResults[i]);
+                } 
+          
             }
-         }
-        
-          let newResults5 = [];
-          for(let i=0; i<newResults4.length; i++) {
-             if(newResults4[i].lang.toLowerCase().includes(language.value.toLowerCase())) {
-                 newResults5.push(newResults4[i]);
-             }
-          }
-
-           let newResults6 = [];
-           for(let i=0; i<newResults5.length; i++) {
-              if(parseInt(newResults5[i].number_copies) >= parseInt(numCopies.value)) {
-                  newResults6.push(newResults5[i]);
-              }
-           }
-
-            let newResults7 = [];
-            for(let i=0; i<newResults6.length; i++) {
-               if(newResults6[i].instrumentation.toLowerCase().includes('violin' || 'flute' || 'clarinet' || 'cello')) {
-                   newResults7.push(newResults6[i]);
+            console.log("Results after composer search:", newResults);
+    
+            let newResults2 = [];
+            for(let i=0; i<newResults.length; i++) {
+               if(newResults[i].title.toLowerCase().includes(title.value.toLowerCase())) {
+                   newResults2.push(newResults[i]);
                }
             }
-
-            let newResults8 = [];
-         for(let i=0; i<newResults7.length; i++) {
-            if(newResults7[i].notes.toLowerCase().includes(notes.value.toLowerCase())) {
-                newResults8.push(newResults7[i]);
+            console.log("Results after title search:", newResults2);
+             
+            let newResults3 = [];
+            for(let i=0; i<newResults2.length; i++) {
+               if(newResults2[i].arranger.toLowerCase().includes(arranger.value.toLowerCase())) {
+                   newResults3.push(newResults2[i]);
+               }
             }
-         }
-
-          this.props.history.push({
-            pathname: '/search-results',
-            state: { results: newResults8 }
-        })
-
-        newResults = [];
+            console.log("Results after arranger search:", newResults3);
+    
+             let newResults4 = [];
+             for(let i=0; i<newResults3.length; i++) {
+                if(newResults3[i].voicing.toLowerCase().includes(voices.value.toLowerCase())) {
+                    newResults4.push(newResults3[i]);
+                }
+             }
+             console.log("Results after voicing search:", newResults4);
+            
+              let newResults5 = [];
+              for(let i=0; i<newResults4.length; i++) {
+                 if(newResults4[i].lang.toLowerCase().includes(language.value.toLowerCase())) {
+                     newResults5.push(newResults4[i]);
+                 }
+              }
+              console.log("Results after language search:", newResults5);
+    
+               let newResults6 = [];
+               for(let i=0; i<newResults5.length; i++) {
+                  if(parseInt(newResults5[i].number_copies) >= parseInt(numCopies.value)) {
+                      newResults6.push(newResults5[i]);
+                  }
+               }
+               console.log("Results after numCopies search:", newResults6);
+    
+                let newResults7 = [];
+                for(let i=0; i<newResults6.length; i++) {
+                   if(newResults6[i].instrumentation.toLowerCase().includes(accompaniment.value.toLowerCase()) || accompaniment.value === '') {
+                       newResults7.push(newResults6[i]);
+                   }
+                }
+                console.log("Results after instrumentation search:", newResults7);
+    
+                let newResults8 = [];
+             for(let i=0; i<newResults7.length; i++) {
+                if(newResults7[i].notes.toLowerCase().includes(notes.value.toLowerCase())) {
+                    newResults8.push(newResults7[i]);
+                }
+             }
+             console.log("Results after notes search:", newResults8);
+    
+              this.props.history.push({
+                pathname: '/search-results',
+                state: { results: newResults8 }
+            })
+    
+            newResults = [];
+        }
         
-    }
+            
+        }
+       
+        
+        
+    
+        
+    
     componentDidMount() {
         window.scrollTo(0,0);
     }
@@ -186,5 +209,6 @@ class SearchForm extends React.Component {
         );
     }
 }
+
 
 export default SearchForm;

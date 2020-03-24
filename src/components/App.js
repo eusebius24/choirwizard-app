@@ -31,7 +31,7 @@ class App extends React.Component {
       }
   })
   .then(res => {
-      console.log("res:", res);
+     
       if (!res.ok) {        
         return res.json().then(error => {
             throw error
@@ -49,7 +49,6 @@ class App extends React.Component {
 
   updateRecord = record => {
     const history = createBrowserHistory();
-    console.log('record:', record);
     const updatedRecords = this.state.records.map(rec => {
      if(rec.id === parseInt(record.id)) {
        rec.title = record.title;
@@ -65,7 +64,7 @@ class App extends React.Component {
        return rec;
      }
     })
-    console.log('updatedRecords:', updatedRecords);
+
     this.setState({
       records: updatedRecords
     })
@@ -74,15 +73,14 @@ class App extends React.Component {
 
   deleteRecord = (recordID) => {
     const history = createBrowserHistory();
-    
+    history.push('/home');
     const newRecords = this.state.records.filter(record => {
       return record.id !== recordID
     })
-
     this.setState({
       records: newRecords,
     })
-    history.push('/home');
+    
   }
 
   deleteItemRequest = (recordID, callback) => {
@@ -116,7 +114,6 @@ class App extends React.Component {
         return res.json();
     })
     .then(data => {
-        console.log("data:", data);
         this.setState({
             records: data
         })

@@ -28,7 +28,6 @@ class ViewAll extends React.Component {
         if(!records) {
             return (<p>Loading...</p>) 
         } else  {
-            console.log('DATA:', this.context.records);
             const recordsList = this.context.records.map(record => {
                 return (
                     

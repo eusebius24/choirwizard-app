@@ -177,3 +177,9 @@ div.checkboxes input {
 .top {
     margin-top: 200px;
 }
+
+.message {
+    font-weight: bold;
+    font-size: 24px;
+    margin-top: 300px;
+}

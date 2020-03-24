@@ -33,9 +33,9 @@ class AddMusic extends React.Component {
             instrumentation: accompaniment.value,
             notes: notes.value,
         }
-        console.log(newRecord);
+       
         
-        fetch(`http://localhost:8000/api/music`, {
+        fetch(`https://cryptic-sea-55654.herokuapp.com/api/music`, {
             method: 'POST',
             body: JSON.stringify(newRecord),
             headers: {
@@ -43,7 +43,6 @@ class AddMusic extends React.Component {
             }
         })
         .then(res => {
-            console.log("res:", res);
             if (!res.ok) {
                 
                 return res.json().then(error => {

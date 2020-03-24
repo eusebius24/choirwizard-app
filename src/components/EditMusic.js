@@ -36,7 +36,6 @@ class EditMusic extends React.Component {
             instrumentation: accompaniment.value,
             notes: notes.value
         }
-        console.log("updatedRecord:", updatedRecord);
         const recordId = updatedRecord.id;
         this.context.updateItemRequest(updatedRecord, recordId);
         this.props.history.push('/view-all');
@@ -49,9 +48,7 @@ class EditMusic extends React.Component {
 
     render() {
         const { error } = this.state;
-        console.log("record:", this.props.location.state);
         const { record } = this.props.location.state;
-        console.log('toViewAll:', this.state.toViewAll);
         return (
             <div className="container">
                 <NavBar />

@@ -12,8 +12,6 @@ class IndivRecord extends React.Component {
         }
     }
 
-  
-
     render() {
         return (
             <div className="search-result">
