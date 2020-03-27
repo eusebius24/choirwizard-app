@@ -4,6 +4,7 @@ import Footer from './Footer';
 import './App.css';
 import IndivRecord from './IndivRecord'
 import ChoirWizardContext from '../context/ChoirWizardContext'
+import wizard from '../wizard.png';
 
 class ViewAll extends React.Component {
 
@@ -41,7 +42,8 @@ class ViewAll extends React.Component {
             <div className="container">
                 <NavBar />
                 <header className="main-header"> 
-                    <h1>Browse Chamber Choir Catalogue</h1>
+                    <img className="wizard-icon" src={wizard} alt="wizard icon" />
+                    <h1 className="header-logo">Browse Chamber Choir Catalogue</h1>
                 </header>
                 <section>
                     {(!records) ? "loading..." :

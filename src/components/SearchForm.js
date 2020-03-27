@@ -4,6 +4,8 @@ import Footer from './Footer';
 import './App.css';
 import { createBrowserHistory } from 'history';
 import ChoirWizardContext from '../context/ChoirWizardContext'
+import wizard from '../wizard.png';
+
 
 class SearchForm extends React.Component {
     constructor(props) {
@@ -51,7 +53,6 @@ class SearchForm extends React.Component {
                 } 
           
             }
-            console.log("Results after composer search:", newResults);
     
             let newResults2 = [];
             for(let i=0; i<newResults.length; i++) {
@@ -59,7 +60,6 @@ class SearchForm extends React.Component {
                    newResults2.push(newResults[i]);
                }
             }
-            console.log("Results after title search:", newResults2);
              
             let newResults3 = [];
             for(let i=0; i<newResults2.length; i++) {
@@ -67,7 +67,7 @@ class SearchForm extends React.Component {
                    newResults3.push(newResults2[i]);
                }
             }
-            console.log("Results after arranger search:", newResults3);
+            
     
              let newResults4 = [];
              for(let i=0; i<newResults3.length; i++) {
@@ -75,7 +75,6 @@ class SearchForm extends React.Component {
                     newResults4.push(newResults3[i]);
                 }
              }
-             console.log("Results after voicing search:", newResults4);
             
               let newResults5 = [];
               for(let i=0; i<newResults4.length; i++) {
@@ -83,7 +82,6 @@ class SearchForm extends React.Component {
                      newResults5.push(newResults4[i]);
                  }
               }
-              console.log("Results after language search:", newResults5);
     
                let newResults6 = [];
                for(let i=0; i<newResults5.length; i++) {
@@ -91,15 +89,14 @@ class SearchForm extends React.Component {
                       newResults6.push(newResults5[i]);
                   }
                }
-               console.log("Results after numCopies search:", newResults6);
-    
+            
                 let newResults7 = [];
                 for(let i=0; i<newResults6.length; i++) {
                    if(newResults6[i].instrumentation.toLowerCase().includes(accompaniment.value.toLowerCase()) || accompaniment.value === '') {
                        newResults7.push(newResults6[i]);
                    }
                 }
-                console.log("Results after instrumentation search:", newResults7);
+               
     
                 let newResults8 = [];
              for(let i=0; i<newResults7.length; i++) {
@@ -107,7 +104,7 @@ class SearchForm extends React.Component {
                     newResults8.push(newResults7[i]);
                 }
              }
-             console.log("Results after notes search:", newResults8);
+             
     
               this.props.history.push({
                 pathname: '/search-results',
@@ -134,34 +131,35 @@ class SearchForm extends React.Component {
             <div className="container">
                  <NavBar />
                 <header className="main-header">
-                    <h1>Search for Music</h1>
+                    <img className="wizard-icon" src={wizard} alt="wizard icon" />
+                    <h1 className="header-logo">Search for Music</h1>
                 </header>
                 <section>
                     <p className="directions">Enter as few or as many details as you like.</p>
                     <form id="search-form" onSubmit={this.handleSubmit}>
                         <div className="form-section">
-                            <label htmlFor="id">Music ID</label>
+                            <label htmlFor="id" className="block-label">Music ID</label>
                             <input type="text" id="id" placeholder="Please enter music ID" />
                         </div>
                         <div className="form-section">
-                            <label htmlFor="title">Title</label>
+                            <label htmlFor="title" className="block-label">Title</label>
                             <input type="text" id="title" placeholder="Title of piece" />
                         </div>
                         <div className="form-section">
-                            <label htmlFor="composer">Composer</label>
+                            <label htmlFor="composer" className="block-label">Composer</label>
                             <input type="text" id="composer" placeholder="Composer" />
                         </div>
                         <div className="form-section">
-                            <label htmlFor="arranger">Arranger</label>
+                            <label htmlFor="arranger" className="block-label">Arranger</label>
                             <input type="text" id="arranger" placeholder="Arranger" />
                         </div>
                         <div className="form-section">
-                            <label htmlFor="language">Language</label>
+                            <label htmlFor="language" className="block-label">Language</label>
                             <input type="text" id="language" placeholder="English" />
                         </div>
                       
                         <div className="form-section">
-                            <label htmlFor="voices">Voices</label>
+                            <label htmlFor="voices" className="block-label">Voices</label>
                             <select name="voices" id="voices">
                                 <option value="">--Please choose an option--</option>
                                 <option value="SA">SA</option>
@@ -177,14 +175,14 @@ class SearchForm extends React.Component {
                             </select>
                         </div>
                         <div className="form-section">
-                            <label htmlFor="numCopies">Number of Copies</label>
+                            <label htmlFor="numCopies" className="block-label">Number of Copies</label>
                             <input type="number" 
                             className="input-number"
                             id="numCopies" placeholder={10} defaultValue={0} />
                         </div>
                         <div className="form-section">
                             <label htmlFor=
-                            "accompaniment">Instrumentation</label>
+                            "accompaniment" className="block-label">Instrumentation</label>
                             <select name = "accompaniment" id="accompaniment">
                                
                                     <option value="">--Please choose an option--</option>
@@ -195,7 +193,7 @@ class SearchForm extends React.Component {
                                </select>  
                         </div>
                         <div className="form-section">
-                            <label htmlFor="notes">Notes</label>
+                            <label htmlFor="notes" className="block-label">Notes</label>
                             <textarea  id="notes" placeholder="Search notes here" />
                         </div>
                         {/* <Link to="/search-results"> */}

@@ -3,6 +3,7 @@ import NavBar from './NavBar';
 import Footer from './Footer';
 import { createBrowserHistory } from 'history';
 import ChoirWizardContext from '../context/ChoirWizardContext';
+import wizard from '../wizard.png';
 
 class EditMusic extends React.Component {
     constructor(props) {
@@ -53,7 +54,8 @@ class EditMusic extends React.Component {
             <div className="container">
                 <NavBar />
                 <header className="main-header">
-                    <h1>Edit Music</h1>
+                    <img className="wizard-icon" src={wizard} alt="wizard icon" />
+                    <h1 className="header-logo">Edit Music</h1>
                 </header>
                 <section>
                     <form id="edit-music-form" onSubmit={this.handleSubmit}>
@@ -61,24 +63,24 @@ class EditMusic extends React.Component {
                             {error && <p>{error.message}</p>}
                         </div>
                         <div className="form-section">
-                            <label htmlFor="title">Title</label>
+                            <label htmlFor="title" className="block-label">Title</label>
                             <input type="text" id="title" defaultValue={record.title} required />
                         </div>
                         <div className="form-section">
-                            <label htmlFor="composer">Composer</label>
+                            <label htmlFor="composer" className="block-label">Composer</label>
                             <input type="text" id="composer" defaultValue={record.composer} />
                         </div>
                         <div className="form-section">
-                            <label htmlFor="title">Arranger</label>
+                            <label htmlFor="title" className="block-label">Arranger</label>
                             <input type="text" id="arranger" defaultValue={record.arranger} />
                         </div>
                         <div className="form-section">
-                            <label htmlFor="language">Language</label>
+                            <label htmlFor="language" className="block-label">Language</label>
                             <input type="text" id="language" defaultValue={record.lang} />
                         </div>
                        
                         <div className="form-section">
-                            <label htmlFor="voices">Voices</label>
+                            <label htmlFor="voices" className="block-label">Voices</label>
                             <select name="voices" id="voices" defaultValue={record.voicing}>
                                 <option value="">--Please choose an option--</option>
                                 <option value="SA">SA</option>
@@ -92,11 +94,11 @@ class EditMusic extends React.Component {
                             </select>
                          </div>
                          <div className="form-section">
-                         <label htmlFor="numCopies">Number of Copies</label>
+                         <label htmlFor="numCopies" className="block-label">Number of Copies</label>
                             <input type="number" className="input-number" id="numCopies"  defaultValue = {record.number_copies} />
                          </div>
                          <div className="form-section">
-                            <label htmlFor="accompaniment">Accompaniment</label>
+                            <label htmlFor="accompaniment" className="block-label">Accompaniment</label>
                             <select name="accompaniment" id="accompaniment" defaultValue={record.instrumentation}>
                                 <option value="">--Please choose an option--</option>
                                 <option value="piano">Piano</option>
@@ -107,7 +109,7 @@ class EditMusic extends React.Component {
                             </select>
                         </div> 
                             <div className="form-section">
-                            <label htmlFor="notes">Notes</label>
+                            <label htmlFor="notes" className="block-label">Notes</label>
                             <textarea id="notes" defaultValue={record.notes} />
                         </div>
                             {/* <Link to="/indiv-item"> */}

@@ -2,6 +2,7 @@ import React from 'react';
 import NavBar from './NavBar';
 import Footer from './Footer';
 import { Link } from 'react-router-dom';
+import wizard from '../wizard.png';
 
 class Home extends React.Component {
 
@@ -14,17 +15,18 @@ class Home extends React.Component {
             <div className="container">
                 <NavBar />
                 <header className="main-header"> 
-                    <h1>Your ChoirWizard Home Page!</h1>
+                    <img className="wizard-icon" src={wizard} alt="wizard icon" />
+                    <h1 className="header-logo">Your ChoirWizard Home Page!</h1>
                 </header>
                 <section>
-                    <h2>Your Catalogues</h2>
+                    <h2 className="header-logo">Your Catalogues</h2>
                     
                     <div className= "cat-list">
                         <h3>Chamber Choir Catalogue</h3>
                         <Link to="/view-all">
-                            <button className = 'general-button small-button' >Browse This Catalogue</button>
+                            <button className = 'general-button' >Browse The Catalogue</button>
                         </Link>
-                    </div>
+                   
                     
 
                     <Link to="/search-form">
@@ -33,6 +35,7 @@ class Home extends React.Component {
                     <Link to="/add-music">
                         <button className = 'general-button' >Add Music to Catalogue</button>
                     </Link>
+                    </div>
                  </section>
                 <Footer />
             </div>

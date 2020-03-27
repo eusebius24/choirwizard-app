@@ -15,7 +15,7 @@ class IndivRecord extends React.Component {
     render() {
         return (
             <div className="search-result">
-                        <h3>{this.props.record.title}</h3>
+                        <h3 className="record-title">{this.props.record.title}</h3>
                         <ul>
                             <li>Composer: {this.props.record.composer}</li>
                             <li>Arranger: {this.props.record.arranger}</li>

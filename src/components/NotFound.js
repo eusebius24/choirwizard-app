@@ -1,5 +1,6 @@
 import React from 'react';
 import { createBrowserHistory } from 'history';
+import wizard from '../wizard.png';
 
 class NotFound extends React.Component {
 
@@ -11,7 +12,8 @@ class NotFound extends React.Component {
     render() {
         return (
             <div className="container top">
-                <h1>Item Not Found</h1>
+                <img className="wizard-icon" src={wizard} alt="wizard icon" />
+                <h1 className="header-logo">Item Not Found</h1>
                 <button className="general-button" onClick={this.handleGoBack}>Go Back</button>
             </div>
         );

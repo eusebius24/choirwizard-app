@@ -3,6 +3,7 @@ import NavBar from './NavBar';
 import Footer from './Footer';
 import { createBrowserHistory } from 'history';
 import ChoirWizardContext from '../context/ChoirWizardContext';
+import wizard from '../wizard.png';
 
 class AddMusic extends React.Component {
     constructor(props) {
@@ -80,7 +81,8 @@ class AddMusic extends React.Component {
             <div className="container">
                 <NavBar />
                 <header className="main-header">
-                    <h1>Add Music</h1>
+                    <img className="wizard-icon" src={wizard} alt="wizard icon" />
+                    <h1 className="header-logo">Add Music</h1>
                 </header>
                 <section>
                     <form id="add-music-form" onSubmit={this.handleSubmit}>
@@ -88,24 +90,24 @@ class AddMusic extends React.Component {
                             {error && <p>{error.message}</p>}
                         </div>
                         <div className="form-section">
-                            <label htmlFor="title">Title</label>
+                            <label htmlFor="title" className="block-label">Title</label>
                             <input type="text" id="title" placeholder="Title of piece" required />
                         </div>
                         <div className="form-section">
-                            <label htmlFor="composer">Composer</label>
+                            <label htmlFor="composer" className="block-label">Composer</label>
                             <input type="text" id="composer" placeholder="Composer" />
                         </div>
                         <div className="form-section">
-                            <label htmlFor="title">Arranger</label>
+                            <label htmlFor="title" className="block-label">Arranger</label>
                             <input type="text" id="arranger" placeholder="Arranger" />
                         </div>
                         <div className="form-section">
-                            <label htmlFor="language">Language</label>
+                            <label htmlFor="language" className="block-label">Language</label>
                             <input type="text" id="language" placeholder="English" />
                         </div>
                        
                         <div className="form-section">
-                            <label htmlFor="voices">Voices</label>
+                            <label htmlFor="voices" className="block-label">Voices</label>
                             <select name="voices" id="voices">
                                 <option value="">--Please choose an option--</option>
                                 <option value="SA">SA</option>
@@ -119,11 +121,11 @@ class AddMusic extends React.Component {
                             </select>
                          </div>
                          <div className="form-section">
-                         <label htmlFor="numCopies">Number of Copies</label>
+                         <label htmlFor="numCopies" className="block-label">Number of Copies</label>
                             <input type="number" className="input-number" id="numCopies" placeholder={10} defaultValue = {null} />
                          </div>
                          <div className="form-section">
-                            <label htmlFor="accompaniment">Accompaniment</label>
+                            <label htmlFor="accompaniment" className="block-label">Accompaniment</label>
                             <select name="accompaniment" id="accompaniment">
                                 <option value="">--Please choose an option--</option>
                                 <option value="piano">Piano</option>
@@ -134,7 +136,7 @@ class AddMusic extends React.Component {
                             </select>
                         </div> 
                             <div className="form-section">
-                            <label htmlFor="notes">Notes</label>
+                            <label htmlFor="notes" className="block-label">Notes</label>
                             <textarea id="notes" placeholder="Please enter any notes here" />
                         </div>
                             {/* <Link to="/indiv-item"> */}

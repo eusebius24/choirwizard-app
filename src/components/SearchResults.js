@@ -4,6 +4,7 @@ import Footer from './Footer';
 import IndivRecord from './IndivRecord';
 import './App.css';
 import { Link } from 'react-router-dom';
+import wizard from '../wizard.png';
 
 class SearchResults extends React.Component {
     constructor(props) {
@@ -34,7 +35,8 @@ class SearchResults extends React.Component {
             <div className="container">
                 <NavBar />
                 <header className="main-header"> 
-                    <h1>Search Results</h1>
+                    <img className="wizard-icon" src={wizard} alt="wizard icon" />
+                    <h1 className="header-logo">Search Results</h1>
                 </header>
                 <section>
                     {(!results) ? "loading..." :
