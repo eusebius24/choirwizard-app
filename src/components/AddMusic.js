@@ -139,9 +139,8 @@ class AddMusic extends React.Component {
                             <label htmlFor="notes" className="block-label">Notes</label>
                             <textarea id="notes" placeholder="Please enter any notes here" />
                         </div>
-                            {/* <Link to="/indiv-item"> */}
-                                <button className = "general-button" type="submit">Submit</button>
-                            {/* </Link> */}
+                            
+                            <button className = "general-button" type="submit">Submit</button>
                             <button className="general-button" type="reset" onClick={this.handleOnClickCancel}>Cancel</button>
                     </form>
                 </section>
