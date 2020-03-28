@@ -25,14 +25,21 @@ class IndivRecord extends React.Component {
                             <li>Instrumentation: {this.props.record.instrumentation}</li>
                             <li>Notes: {this.props.record.notes}</li>
                         </ul>
-                        <Link to={{ pathname: '/edit-music',
-                        state: {
-                            record: this.props.record
-                        }
-                        }}>
+                        <Link to={{ 
+                            pathname: '/edit-music',
+                            state: {
+                                record: this.props.record
+                            }
+                            }}
+                        >
                             <button className="general-button small-button">Edit item</button>
                         </Link>
-                        <button className="general-button small-button" onClick={() => this.context.deleteItemRequest(this.props.record.id, this.context.deleteRecord)}>Delete item</button>
+                        <button 
+                            className="general-button small-button" 
+                            onClick={() => this.context.deleteItemRequest(this.props.record.id, this.context.deleteRecord)}
+                        >
+                            Delete item
+                        </button>
                         <hr />
                     </div>
         );

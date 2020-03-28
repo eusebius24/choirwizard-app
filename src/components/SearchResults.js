@@ -43,7 +43,7 @@ class SearchResults extends React.Component {
                     resultsList}
                     <Link to="/view-all">
                             <button className = 'general-button'>View Entire Catalogue</button>
-                        </Link>
+                    </Link>
                 </section>
                 <Footer />
             </div>

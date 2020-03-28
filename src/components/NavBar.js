@@ -1,13 +1,10 @@
 import React from 'react';
 import './App.css';
 import './BurgerMenu.css';
-import { NavLink } from 'react-router-dom';
 import { slide as Menu } from 'react-burger-menu';
 
 class NavBar extends React.Component {     
-    // showSettings(event) {
-    //     event.preventDefault();
-    // }
+   
     render() {
         
         return (

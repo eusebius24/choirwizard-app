@@ -94,8 +94,13 @@ class EditMusic extends React.Component {
                             </select>
                          </div>
                          <div className="form-section">
-                         <label htmlFor="numCopies" className="block-label">Number of Copies</label>
-                            <input type="number" className="input-number" id="numCopies"  defaultValue = {record.number_copies} />
+                            <label htmlFor="numCopies" className="block-label">Number of Copies</label>
+                            <input 
+                                type="number" 
+                                className="input-number" 
+                                id="numCopies"  
+                                defaultValue = {record.number_copies} 
+                            />
                          </div>
                          <div className="form-section">
                             <label htmlFor="accompaniment" className="block-label">Accompaniment</label>
@@ -112,10 +117,14 @@ class EditMusic extends React.Component {
                             <label htmlFor="notes" className="block-label">Notes</label>
                             <textarea id="notes" defaultValue={record.notes} />
                         </div>
-                            {/* <Link to="/indiv-item"> */}
-                                <button className = "general-button" type="submit">Submit</button>
-                            {/* </Link> */}
-                            <button className="general-button" type="reset" onClick={this.handleOnClickCancel}>Cancel</button>
+                            <button className = "general-button" type="submit">Submit</button>
+                            <button 
+                                className="general-button" 
+                                type="reset" 
+                                onClick={this.handleOnClickCancel}
+                            >
+                                Cancel
+                            </button>
                     </form>
                 </section>
                 <Footer />

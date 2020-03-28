@@ -99,11 +99,11 @@ class SearchForm extends React.Component {
                
     
                 let newResults8 = [];
-             for(let i=0; i<newResults7.length; i++) {
-                if(newResults7[i].notes.toLowerCase().includes(notes.value.toLowerCase())) {
-                    newResults8.push(newResults7[i]);
+                for(let i=0; i<newResults7.length; i++) {
+                    if(newResults7[i].notes.toLowerCase().includes(notes.value.toLowerCase())) {
+                        newResults8.push(newResults7[i]);
+                    }
                 }
-             }
              
     
               this.props.history.push({
@@ -112,16 +112,11 @@ class SearchForm extends React.Component {
             })
     
             newResults = [];
-        }
+         }
         
             
         }
        
-        
-        
-    
-        
-    
     componentDidMount() {
         window.scrollTo(0,0);
     }
@@ -176,30 +171,41 @@ class SearchForm extends React.Component {
                         </div>
                         <div className="form-section">
                             <label htmlFor="numCopies" className="block-label">Number of Copies</label>
-                            <input type="number" 
-                            className="input-number"
-                            id="numCopies" placeholder={10} defaultValue={0} />
+                            <input 
+                                type="number" 
+                                className="input-number"
+                                id="numCopies" 
+                                placeholder={10} 
+                                defaultValue={0} 
+                            />
                         </div>
                         <div className="form-section">
-                            <label htmlFor=
-                            "accompaniment" className="block-label">Instrumentation</label>
+                            <label 
+                                htmlFor="accompaniment" 
+                                className="block-label"
+                            >
+                                Instrumentation
+                            </label>
                             <select name = "accompaniment" id="accompaniment">
-                               
-                                    <option value="">--Please choose an option--</option>
-                                    <option value="piano"  >Piano</option>
-                                    <option value="organ"  >Organ</option>
-                                    <option value="unaccompanied">Unaccompanied</option>
-                                    <option value="violin flute clarinet instrument">Obbligato instrument</option>
-                               </select>  
+                                <option value="">--Please choose an option--</option>
+                                <option value="piano"  >Piano</option>
+                                <option value="organ"  >Organ</option>
+                                <option value="unaccompanied">Unaccompanied</option>
+                                <option value="violin flute clarinet instrument">Obbligato instrument</option>
+                            </select>  
                         </div>
                         <div className="form-section">
                             <label htmlFor="notes" className="block-label">Notes</label>
-                            <textarea  id="notes" placeholder="Search notes here" />
+                            <textarea id="notes" placeholder="Search notes here" />
                         </div>
-                        {/* <Link to="/search-results"> */}
-                            <button className = "general-button" type="submit">Search</button>
-                        {/* </Link> */}
-                        <button className="general-button" type="reset" onClick={this.handleOnClickCancel}>Cancel</button>
+                        <button className = "general-button" type="submit">Search</button>
+                        <button 
+                            className="general-button" 
+                            type="reset" 
+                            onClick={this.handleOnClickCancel}
+                        >
+                            Cancel
+                        </button>
                     </form>
                 </section>
                 <Footer />

@@ -122,7 +122,13 @@ class AddMusic extends React.Component {
                          </div>
                          <div className="form-section">
                          <label htmlFor="numCopies" className="block-label">Number of Copies</label>
-                            <input type="number" className="input-number" id="numCopies" placeholder={10} defaultValue = {null} />
+                            <input 
+                                type="number" 
+                                className="input-number" 
+                                id="numCopies" 
+                                placeholder={10} 
+                                defaultValue = {null} 
+                            />
                          </div>
                          <div className="form-section">
                             <label htmlFor="accompaniment" className="block-label">Accompaniment</label>
@@ -141,7 +147,13 @@ class AddMusic extends React.Component {
                         </div>
                             
                             <button className = "general-button" type="submit">Submit</button>
-                            <button className="general-button" type="reset" onClick={this.handleOnClickCancel}>Cancel</button>
+                            <button 
+                                className="general-button" 
+                                type="reset" 
+                                onClick={this.handleOnClickCancel}
+                            >
+                                Cancel
+                            </button>
                     </form>
                 </section>
                 <Footer />

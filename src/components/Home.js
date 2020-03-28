@@ -26,15 +26,12 @@ class Home extends React.Component {
                         <Link to="/view-all">
                             <button className = 'general-button' >Browse The Catalogue</button>
                         </Link>
-                   
-                    
-
-                    <Link to="/search-form">
-                        <button className = 'general-button' >Search for Music</button>
-                    </Link>
-                    <Link to="/add-music">
-                        <button className = 'general-button' >Add Music to Catalogue</button>
-                    </Link>
+                        <Link to="/search-form">
+                            <button className = 'general-button' >Search for Music</button>
+                        </Link>
+                        <Link to="/add-music">
+                            <button className = 'general-button' >Add Music to Catalogue</button>
+                        </Link>
                     </div>
                  </section>
                 <Footer />

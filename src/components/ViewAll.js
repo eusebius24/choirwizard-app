@@ -8,7 +8,7 @@ import wizard from '../wizard.png';
 
 class ViewAll extends React.Component {
 
-    static contextType = ChoirWizardContext
+    static contextType = ChoirWizardContext;
 
     constructor(props) {
         super(props);
@@ -19,11 +19,8 @@ class ViewAll extends React.Component {
 
     componentDidMount() {
         window.scrollTo(0,0);
-       
     }
             
-    
-
     render() {
         const { records } = this.context;
         if(!records) {
@@ -31,10 +28,8 @@ class ViewAll extends React.Component {
         } else  {
             const recordsList = this.context.records.map(record => {
                 return (
-                    
                     <IndivRecord record={record} key={record.id} /> 
-              
-                )
+                );
             })
         
        

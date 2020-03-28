@@ -21,6 +21,7 @@ class App extends React.Component {
     })
   }
 
+  //Patch request
   updateItemRequest = (updatedRecord, recordId) => {
     const history = createBrowserHistory();
     fetch(`${config.API_ENDPOINT}/music/${recordId}`, {
@@ -47,6 +48,7 @@ class App extends React.Component {
   })
 }
 
+//Updates record in state
   updateRecord = record => {
     const history = createBrowserHistory();
     const updatedRecords = this.state.records.map(rec => {
@@ -71,6 +73,7 @@ class App extends React.Component {
     
   }
 
+  //Deletes item in state
   deleteRecord = (recordID) => {
     const history = createBrowserHistory();
     history.push('/home');
@@ -83,6 +86,7 @@ class App extends React.Component {
     
   }
 
+  //Delete request to server
   deleteItemRequest = (recordID, callback) => {
     const history = createBrowserHistory();
 

@@ -7,11 +7,8 @@ import AddMusic from './AddMusic';
 import SearchForm from './SearchForm';
 import SearchResults from './SearchResults';
 import ViewAll from './ViewAll';
-import IndivItem from './IndivItem';
 import EditMusic from './EditMusic';
-// import PrivateRoute from '../Utils/PrivateRoute'
-// import PublicOnlyRoute from '../Utils/PublicOnlyRoute'
-import NotFound from './NotFound'
+import NotFound from './NotFound';
 
 class Main extends React.Component {
     
@@ -25,7 +22,6 @@ class Main extends React.Component {
                 <Route path = '/search-form' component={SearchForm} />
                 <Route path = "/search-results" component={SearchResults} />
                 <Route path = "/view-all" component={ViewAll} />
-                <Route path="/indiv-item" component={IndivItem} />
                 <Route path="/edit-music" component={EditMusic} />
                 <Route component={NotFound} />
             </Switch>
