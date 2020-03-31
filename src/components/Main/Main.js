@@ -1,14 +1,14 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import './App.css';
-import Landing from './Landing';
-import Home from './Home';
-import AddMusic from './AddMusic';
-import SearchForm from './SearchForm';
-import SearchResults from './SearchResults';
-import ViewAll from './ViewAll';
-import EditMusic from './EditMusic';
-import NotFound from './NotFound';
+import '../../components/App/App.css';
+import Landing from '../Landing/Landing';
+import Home from '../Home/Home';
+import AddMusic from '../AddMusic/AddMusic';
+import SearchForm from '../SearchForm/SearchForm';
+import SearchResults from '../SearchResults/SearchResults';
+import ViewAll from '../ViewAll/ViewAll';
+import EditMusic from '../EditMusic/EditMusic';
+import NotFound from '../NotFound/NotFound';
 
 class Main extends React.Component {
     

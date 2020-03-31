@@ -1,7 +1,7 @@
 import React from 'react';
-import Footer from './Footer';
+import Footer from '../Footer/Footer';
 import { Link } from 'react-router-dom';
-import wizard from '../wizard.png';
+import wizard from '../../wizard.png';
 
 
 class Landing extends React.Component {

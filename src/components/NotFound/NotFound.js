@@ -1,6 +1,6 @@
 import React from 'react';
 import { createBrowserHistory } from 'history';
-import wizard from '../wizard.png';
+import wizard from '../../wizard.png';
 
 class NotFound extends React.Component {
 

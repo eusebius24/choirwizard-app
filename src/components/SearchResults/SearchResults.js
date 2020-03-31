@@ -1,10 +1,10 @@
 import React from 'react';
-import NavBar from './NavBar';
-import Footer from './Footer';
-import IndivRecord from './IndivRecord';
-import './App.css';
+import NavBar from '../NavBar/NavBar';
+import Footer from '../Footer/Footer';
+import IndivRecord from '../IndivRecord/IndivRecord';
+import '../App/App.css';
 import { Link } from 'react-router-dom';
-import wizard from '../wizard.png';
+import wizard from '../../wizard.png';
 
 class SearchResults extends React.Component {
     constructor(props) {
@@ -24,9 +24,7 @@ class SearchResults extends React.Component {
         } else {
             const resultsList = results.map(record => {
                 return (
-                    
                     <IndivRecord record={record} key={record.id} /> 
-              
                 )
             })
         

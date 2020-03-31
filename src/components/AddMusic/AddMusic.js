@@ -1,9 +1,9 @@
 import React from 'react';
-import NavBar from './NavBar';
-import Footer from './Footer';
+import NavBar from '../NavBar/NavBar';
+import Footer from '../Footer/Footer';
 import { createBrowserHistory } from 'history';
-import ChoirWizardContext from '../context/ChoirWizardContext';
-import wizard from '../wizard.png';
+import ChoirWizardContext from '../../context/ChoirWizardContext';
+import wizard from '../../wizard.png';
 
 class AddMusic extends React.Component {
     constructor(props) {

@@ -1,10 +1,10 @@
 import React from 'react';
-import NavBar from './NavBar';
-import Footer from './Footer';
-import './App.css';
-import IndivRecord from './IndivRecord'
-import ChoirWizardContext from '../context/ChoirWizardContext'
-import wizard from '../wizard.png';
+import NavBar from '../NavBar/NavBar';
+import Footer from '../Footer/Footer';
+import '../App/App.css';
+import IndivRecord from '../IndivRecord/IndivRecord'
+import ChoirWizardContext from '../../context/ChoirWizardContext'
+import wizard from '../../wizard.png';
 
 class ViewAll extends React.Component {
 

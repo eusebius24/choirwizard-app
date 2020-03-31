@@ -1,8 +1,8 @@
 import React from 'react';
-import NavBar from './NavBar';
-import Footer from './Footer';
+import NavBar from '../NavBar/NavBar';
+import Footer from '../Footer/Footer';
 import { Link } from 'react-router-dom';
-import wizard from '../wizard.png';
+import wizard from '../../wizard.png';
 
 class Home extends React.Component {
 

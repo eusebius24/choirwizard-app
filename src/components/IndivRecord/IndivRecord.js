@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import ChoirWizardContext from '../context/ChoirWizardContext'
+import ChoirWizardContext from '../../context/ChoirWizardContext'
 
 class IndivRecord extends React.Component {
     static contextType = ChoirWizardContext;

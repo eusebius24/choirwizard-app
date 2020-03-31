@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import Main from './Main';
-import NavBar from './NavBar'
-import config from '../config'
-import ChoirWizardContext from '../context/ChoirWizardContext'
+import Main from '../../components/Main/Main';
+import NavBar from '../NavBar/NavBar'
+import config from '../../config'
+import ChoirWizardContext from '../../context/ChoirWizardContext'
 import { createBrowserHistory } from 'history';
 
 
@@ -122,6 +122,9 @@ class App extends React.Component {
             records: data
         })
     })
+    .catch(error => {
+      this.setState({ error });
+  })
   }
 
   render() {

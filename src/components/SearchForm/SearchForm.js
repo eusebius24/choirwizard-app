@@ -1,10 +1,10 @@
 import React from 'react';
-import NavBar from './NavBar';
-import Footer from './Footer';
-import './App.css';
+import NavBar from '../NavBar/NavBar';
+import Footer from '../Footer/Footer';
+import '../App/App.css';
 import { createBrowserHistory } from 'history';
-import ChoirWizardContext from '../context/ChoirWizardContext'
-import wizard from '../wizard.png';
+import ChoirWizardContext from '../../context/ChoirWizardContext'
+import wizard from '../../wizard.png';
 
 
 class SearchForm extends React.Component {

@@ -1,6 +1,6 @@
 import React from 'react';
-import './App.css';
-import './BurgerMenu.css';
+import '../App/App.css';
+import '../App/BurgerMenu.css';
 import { slide as Menu } from 'react-burger-menu';
 
 class NavBar extends React.Component {     
