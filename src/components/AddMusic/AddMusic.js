@@ -69,11 +69,7 @@ class AddMusic extends React.Component {
             this.setState({ error });
         })
     }
-    
-
-    componentDidMount() {
-        window.scrollTo(0,0);
-    }
+  
 
     render() {
         const { error } = this.state;
