@@ -7,10 +7,7 @@ import { Link } from 'react-router-dom';
 import wizard from '../../wizard.png';
 
 class SearchResults extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
+    
     componentDidMount() {
         window.scrollTo(0,0);
     }

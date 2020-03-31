@@ -8,9 +8,7 @@ import wizard from '../../wizard.png';
 
 
 class SearchForm extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+   
     static contextType = ChoirWizardContext;
 
     handleOnClickCancel() {
@@ -19,7 +17,6 @@ class SearchForm extends React.Component {
     }
 
     handleSubmit = (e) => {
-        const history = createBrowserHistory();
         e.preventDefault();
         const { id, title, composer, arranger, language, voices, numCopies, accompaniment, notes } = e.target
        
@@ -44,14 +41,12 @@ class SearchForm extends React.Component {
                     state: { results: newResults }
                 })
                 return newResults;
-        
             } 
         } else {
             for(let i=0; i<searchResults.length; i++) {
                 if (searchResults[i].composer.toLowerCase().includes(composer.value.toLowerCase())) {
                     newResults.push(searchResults[i]);
                 } 
-          
             }
     
             let newResults2 = [];
@@ -69,41 +64,40 @@ class SearchForm extends React.Component {
             }
             
     
-             let newResults4 = [];
-             for(let i=0; i<newResults3.length; i++) {
+            let newResults4 = [];
+            for(let i=0; i<newResults3.length; i++) {
                 if(newResults3[i].voicing.toLowerCase().includes(voices.value.toLowerCase())) {
                     newResults4.push(newResults3[i]);
                 }
-             }
+            }
             
-              let newResults5 = [];
-              for(let i=0; i<newResults4.length; i++) {
+            let newResults5 = [];
+            for(let i=0; i<newResults4.length; i++) {
                  if(newResults4[i].lang.toLowerCase().includes(language.value.toLowerCase())) {
                      newResults5.push(newResults4[i]);
                  }
-              }
+            }
     
-               let newResults6 = [];
-               for(let i=0; i<newResults5.length; i++) {
-                  if(parseInt(newResults5[i].number_copies) >= parseInt(numCopies.value)) {
-                      newResults6.push(newResults5[i]);
-                  }
-               }
+            let newResults6 = [];
+            for(let i=0; i<newResults5.length; i++) {
+                if(parseInt(newResults5[i].number_copies) >= parseInt(numCopies.value)) {
+                    newResults6.push(newResults5[i]);
+                }
+            }
             
-                let newResults7 = [];
-                for(let i=0; i<newResults6.length; i++) {
-                   if(newResults6[i].instrumentation.toLowerCase().includes(accompaniment.value.toLowerCase()) || accompaniment.value === '') {
-                       newResults7.push(newResults6[i]);
-                   }
+            let newResults7 = [];
+            for(let i=0; i<newResults6.length; i++) {
+                if(newResults6[i].instrumentation.toLowerCase().includes(accompaniment.value.toLowerCase()) || accompaniment.value === '') {
+                    newResults7.push(newResults6[i]);
                 }
-               
-    
-                let newResults8 = [];
-                for(let i=0; i<newResults7.length; i++) {
-                    if(newResults7[i].notes.toLowerCase().includes(notes.value.toLowerCase())) {
-                        newResults8.push(newResults7[i]);
-                    }
+            }
+
+            let newResults8 = [];
+            for(let i=0; i<newResults7.length; i++) {
+                if(newResults7[i].notes.toLowerCase().includes(notes.value.toLowerCase())) {
+                    newResults8.push(newResults7[i]);
                 }
+            }
              
     
               this.props.history.push({
@@ -113,7 +107,6 @@ class SearchForm extends React.Component {
     
             newResults = [];
          }
-        
             
         }
        

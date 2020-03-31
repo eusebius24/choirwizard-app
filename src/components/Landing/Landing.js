@@ -5,9 +5,7 @@ import wizard from '../../wizard.png';
 
 
 class Landing extends React.Component {
-    constructor() {
-        super();
-    }
+   
     
     render() {
         return (
@@ -33,8 +31,6 @@ class Landing extends React.Component {
                 </section>
                 <Footer />
             </main>
-            
-
         )
     }
 }
