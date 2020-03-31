@@ -13,7 +13,7 @@ describe('EditMusic Component', () => {
         const div = document.createElement('div');
         ReactDom.render(
                 <BrowserRouter>
-                    <EditMusic props={record} />
+                    <EditMusic location={{state: {record}}} record={record} />
                 </BrowserRouter>
             , div);
         ReactDom.unmountComponentAtNode(div);

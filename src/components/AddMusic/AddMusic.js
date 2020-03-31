@@ -54,6 +54,7 @@ class AddMusic extends React.Component {
             return res.json();
         })
         .then(data => {
+            this.context.addRecord(data);
             title.value = '';
             composer.value = '';
             arranger.value = '';
@@ -62,7 +63,7 @@ class AddMusic extends React.Component {
             numCopies.value = null;
             accompaniment.value = '';
             notes.value = '';
-            this.context.addRecord(data);
+            
             this.props.history.push('/view-all')
         })
         .catch(error => {

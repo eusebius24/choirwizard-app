@@ -10,7 +10,7 @@ describe('IndivRecord Component', () => {
     }
     it('renders without crashing', () => {
         const div = document.createElement('div');
-        ReactDom.render(<IndivRecord props={record} />, div);
+        ReactDom.render(<IndivRecord location={{state: {record}}} record={record} />, div);
         ReactDom.unmountComponentAtNode(div);
     })
 });

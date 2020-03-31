@@ -8,10 +8,6 @@ import wizard from '../../wizard.png';
 
 class SearchResults extends React.Component {
     
-    componentDidMount() {
-        window.scrollTo(0,0);
-    }
-    
     render() {
         const { results } = this.props.location.state;
         if(!results) {

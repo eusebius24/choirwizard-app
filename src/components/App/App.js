@@ -1,5 +1,4 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
 import Main from '../../components/Main/Main';
 import NavBar from '../NavBar/NavBar'
 import config from '../../config'
@@ -23,7 +22,6 @@ class App extends React.Component {
 
   //Patch request
   updateItemRequest = (updatedRecord, recordId) => {
-    const history = createBrowserHistory();
     fetch(`${config.API_ENDPOINT}/music/${recordId}`, {
       method: 'PATCH',
       body: JSON.stringify(updatedRecord),
@@ -50,7 +48,6 @@ class App extends React.Component {
 
 //Updates record in state
   updateRecord = record => {
-    const history = createBrowserHistory();
     const updatedRecords = this.state.records.map(rec => {
      if(rec.id === parseInt(record.id)) {
        rec.title = record.title;
@@ -88,8 +85,6 @@ class App extends React.Component {
 
   //Delete request to server
   deleteItemRequest = (recordID, callback) => {
-    const history = createBrowserHistory();
-
     fetch(`${config.API_ENDPOINT}/music/${recordID}`, {
       method: 'DELETE',
       headers: {
@@ -138,13 +133,13 @@ class App extends React.Component {
     return (
       <main className='App'>
       
-        <BrowserRouter>
+        
           <ChoirWizardContext.Provider value={contextValue}>
             <NavBar />
             {this.state.hasError && <p className='red'>There was an error!  Oh no!</p>}
             <Main />
           </ChoirWizardContext.Provider>
-        </BrowserRouter>
+       
       </main>
     );
   }
