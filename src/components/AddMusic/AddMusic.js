@@ -4,6 +4,7 @@ import Footer from '../Footer/Footer';
 import { createBrowserHistory } from 'history';
 import ChoirWizardContext from '../../context/ChoirWizardContext';
 import wizard from '../../wizard.png';
+import config from '../../config';
 
 class AddMusic extends React.Component {
     constructor(props) {
@@ -36,7 +37,7 @@ class AddMusic extends React.Component {
         }
        
         
-        fetch(`https://cryptic-sea-55654.herokuapp.com/api/music`, {
+        fetch(`${config.API_ENDPOINT}/music/`, {
             method: 'POST',
             body: JSON.stringify(newRecord),
             headers: {

@@ -3,7 +3,7 @@ import NavBar from '../NavBar/NavBar';
 import Footer from '../Footer/Footer';
 import '../App/App.css';
 import IndivRecord from '../IndivRecord/IndivRecord'
-import ChoirWizardContext from '../../context/ChoirWizardContext'
+import ChoirWizardContext, { useAppContext } from '../../context/ChoirWizardContext'
 import wizard from '../../wizard.png';
 
 class ViewAll extends React.Component {
@@ -16,17 +16,13 @@ class ViewAll extends React.Component {
             records: []
         }
     }
-
-    componentDidMount() {
-        window.scrollTo(0,0);
-    }
             
     render() {
-        const { records } = this.context;
+        const { records } = this.context || useAppContext();
         if(!records) {
             return (<p>Loading...</p>) 
         } else  {
-            const recordsList = this.context.records.map(record => {
+            const recordsList = this.context.records && this.context.records.map(record => {
                 return (
                     <IndivRecord record={record} key={record.id} /> 
                 );

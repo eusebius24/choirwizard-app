@@ -1,6 +1,6 @@
 import React from 'react';
-import { BrowserRouter, Link } from 'react-router-dom';
-import ChoirWizardContext from '../../context/ChoirWizardContext'
+import { BrowserRouter, Redirect } from 'react-router-dom';
+import ChoirWizardContext from '../../context/ChoirWizardContext';
 
 class IndivRecord extends React.Component {
     static contextType = ChoirWizardContext;
@@ -10,6 +10,15 @@ class IndivRecord extends React.Component {
         this.state = {
             record: this.props.record,
         }
+    }
+    
+    handleSubmit = (e) => {
+        e.preventDefault();
+       // eslint-disable-next-line no-unused-expressions
+       <Redirect to={{
+           pathname: "/edit-music",
+           state: {record: this.state.record}
+       }} />
     }
 
     render() {
@@ -26,15 +35,9 @@ class IndivRecord extends React.Component {
                         <li>Instrumentation: {this.props.record.instrumentation}</li>
                         <li>Notes: {this.props.record.notes}</li>
                     </ul>
-                    <Link to={{ 
-                            pathname: '/edit-music',
-                            state: {
-                                record: this.props.record
-                            }
-                        }}
-                    >
-                        <button className="general-button small-button">Edit item</button>
-                    </Link>
+                   
+                        <button className="general-button small-button" onClick={this.handleSubmit} >Edit item</button>
+                 
                     <button 
                         className="general-button small-button" 
                         onClick={() => this.context.deleteItemRequest(this.props.record.id, this.context.deleteRecord)}

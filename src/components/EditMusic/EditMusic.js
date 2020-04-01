@@ -23,6 +23,7 @@ class EditMusic extends React.Component {
     }
 
     handleSubmit = (e) => {
+        const history = createBrowserHistory();
         e.preventDefault();
         const { record } = this.props.location.state
         const { title, composer, arranger, language, voices, numCopies, accompaniment, notes } = e.target
@@ -39,9 +40,10 @@ class EditMusic extends React.Component {
         }
         const recordId = updatedRecord.id;
         this.context.updateItemRequest(updatedRecord, recordId);
-        this.props.history.push('/view-all');
+        this.context.getAllRecords();
+        history.push("/view-all");
     }
-    
+
 
     render() {
         const { error } = this.state;

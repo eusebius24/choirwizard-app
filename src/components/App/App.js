@@ -18,7 +18,28 @@ class App extends React.Component {
     this.setState({
       records: [ ...this.state.records, record ],
     })
+    this.getAllRecords();
   }
+
+  //Get request
+  getAllRecords = () => {
+    fetch(`${config.API_ENDPOINT}/music/`)
+    .then(res => {
+        if (!res.ok) {
+            throw new Error(res.status)
+           }
+        return res.json();
+    })
+    .then(data => {
+        this.setState({
+            records: data
+        })
+    })
+    .catch(error => {
+      this.setState({ error });
+    })
+  }
+  
 
   //Patch request
   updateItemRequest = (updatedRecord, recordId) => {
@@ -30,7 +51,6 @@ class App extends React.Component {
       }
   })
   .then(res => {
-     
       if (!res.ok) {        
         return res.json().then(error => {
             throw error
@@ -44,6 +64,7 @@ class App extends React.Component {
   .catch(error => {
       this.setState({ error });
   })
+  this.getAllRecords();
 }
 
 //Updates record in state
@@ -105,21 +126,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`${config.API_ENDPOINT}/music/`)
-    .then(res => {
-        if (!res.ok) {
-            throw new Error(res.status)
-           }
-        return res.json();
-    })
-    .then(data => {
-        this.setState({
-            records: data
-        })
-    })
-    .catch(error => {
-      this.setState({ error });
-  })
+    this.getAllRecords();
   }
 
   render() {
@@ -129,6 +136,7 @@ class App extends React.Component {
       deleteItemRequest: this.deleteItemRequest,
       deleteRecord: this.deleteRecord,
       updateItemRequest: this.updateItemRequest,
+      getAllRecords: this.getAllRecords,
     }
     return (
       <main className='App'>
