@@ -13,7 +13,7 @@ class IndivRecord extends React.Component {
     }
     
     handleSubmit = (e) => {
-        e.preventDefault();
+        
        // eslint-disable-next-line no-unused-expressions
        <Redirect to={{
            pathname: "/edit-music",

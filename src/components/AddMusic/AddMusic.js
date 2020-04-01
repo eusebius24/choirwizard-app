@@ -64,7 +64,7 @@ class AddMusic extends React.Component {
             numCopies.value = null;
             accompaniment.value = '';
             notes.value = '';
-            
+            this.context.getAllRecords();
             this.props.history.push('/view-all')
         })
         .catch(error => {

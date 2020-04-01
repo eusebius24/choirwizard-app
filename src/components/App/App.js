@@ -15,15 +15,17 @@ class App extends React.Component {
   }
 
   addRecord = record => {
+    this.getAllRecords();
     this.setState({
       records: [ ...this.state.records, record ],
     })
-    this.getAllRecords();
+
+    
   }
 
   //Get request
   getAllRecords = () => {
-    fetch(`${config.API_ENDPOINT}/music/`)
+    fetch(`${config.API_ENDPOINT}/music`)
     .then(res => {
         if (!res.ok) {
             throw new Error(res.status)

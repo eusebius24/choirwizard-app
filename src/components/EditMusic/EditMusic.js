@@ -48,6 +48,7 @@ class EditMusic extends React.Component {
     render() {
         const { error } = this.state;
         const { record } = this.props.location.state;
+        console.log("props:", this.props);
         return (
             <div className="container">
                 <NavBar />
