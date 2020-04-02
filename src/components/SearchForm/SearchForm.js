@@ -18,13 +18,22 @@ class SearchForm extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        const { id, title, composer, arranger, language, voices, numCopies, accompaniment, notes } = e.target
+        const id = document.getElementById("id").value;
+        const title = document.getElementById("title").value;
+        const composer = document.getElementById("composer").value;
+        const arranger = document.getElementById("arranger").value;
+        const language = document.getElementById("language").value;
+        const voices = document.getElementById("voices").value;
+        const numCopies = document.getElementById("numCopies").value;
+        const accompaniment = document.getElementById("accompaniment").value;
+        const notes = document.getElementById("notes").value;
        
         const searchResults = this.context.records;
+       
         let newResults = [];
-        if(id.value) {
+        if(id) {
             for (let i=0; i<searchResults.length; i++) {
-                if (parseInt(searchResults[i].id) === parseInt(id.value)) {
+                if (parseInt(searchResults[i].id) === parseInt(id)) {
                     newResults.push(searchResults[i]);
                 }
             }
@@ -44,73 +53,61 @@ class SearchForm extends React.Component {
             } 
         } else {
             for(let i=0; i<searchResults.length; i++) {
-                if (searchResults[i].composer.toLowerCase().includes(composer.value.toLowerCase())) {
+                if (searchResults[i].composer.toLowerCase().includes(composer.toLowerCase())) {
                     newResults.push(searchResults[i]);
                 } 
             }
-    
             let newResults2 = [];
             for(let i=0; i<newResults.length; i++) {
-               if(newResults[i].title.toLowerCase().includes(title.value.toLowerCase())) {
+               if(newResults[i].title.toLowerCase().includes(title.toLowerCase())) {
                    newResults2.push(newResults[i]);
                }
             }
-             
             let newResults3 = [];
             for(let i=0; i<newResults2.length; i++) {
-               if(newResults2[i].arranger.toLowerCase().includes(arranger.value.toLowerCase())) {
+               if(newResults2[i].arranger.toLowerCase().includes(arranger.toLowerCase())) {
                    newResults3.push(newResults2[i]);
                }
             }
-            
-    
             let newResults4 = [];
             for(let i=0; i<newResults3.length; i++) {
-                if(newResults3[i].voicing.toLowerCase().includes(voices.value.toLowerCase())) {
+                if(newResults3[i].voicing.toLowerCase().includes(voices.toLowerCase()) || voices.toLowerCase() === null) {
                     newResults4.push(newResults3[i]);
                 }
             }
-            
             let newResults5 = [];
             for(let i=0; i<newResults4.length; i++) {
-                 if(newResults4[i].lang.toLowerCase().includes(language.value.toLowerCase())) {
+                 if(newResults4[i].lang.toLowerCase().includes(language.toLowerCase()) || language.toLowerCase() === null) {
                      newResults5.push(newResults4[i]);
                  }
             }
-    
             let newResults6 = [];
             for(let i=0; i<newResults5.length; i++) {
-                if(parseInt(newResults5[i].number_copies) >= parseInt(numCopies.value)) {
+                if(parseInt(newResults5[i].number_copies) >= parseInt(numCopies) || parseInt(numCopies) === 0) {
                     newResults6.push(newResults5[i]);
                 }
             }
-            
             let newResults7 = [];
             for(let i=0; i<newResults6.length; i++) {
-                if(newResults6[i].instrumentation.toLowerCase().includes(accompaniment.value.toLowerCase()) || accompaniment.value === '') {
+                if(newResults6[i].instrumentation.toLowerCase().includes(accompaniment.toLowerCase()) || accompaniment.value === '') {
                     newResults7.push(newResults6[i]);
                 }
             }
-
             let newResults8 = [];
             for(let i=0; i<newResults7.length; i++) {
-                if(newResults7[i].notes.toLowerCase().includes(notes.value.toLowerCase())) {
+                if(newResults7[i].notes.toLowerCase().includes(notes.toLowerCase()) || notes === '') {
                     newResults8.push(newResults7[i]);
                 }
             }
-             
-    
               this.props.history.push({
                 pathname: '/search-results',
                 state: { results: newResults8 }
             })
     
             newResults = [];
-         }
-            
+         } 
         }
        
-
     render() {
         return (
             <div className="container">

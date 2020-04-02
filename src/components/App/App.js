@@ -57,16 +57,19 @@ class App extends React.Component {
         return res.json().then(error => {
             throw error
         })
-    }
+      }
     return res.json();
   })
   .then(
       this.updateRecord(updatedRecord)
   )
+  .then(
+    this.getAllRecords()
+  )
   .catch(error => {
       this.setState({ error });
   })
-  this.getAllRecords();
+  
 }
 
 //Updates record in state
@@ -77,7 +80,7 @@ class App extends React.Component {
        rec.composer = record.composer;
        rec.arranger = record.arranger;
        rec.voicing = record.voicing;
-       rec.number_copies = record.number_copies;
+       rec.number_copies = parseInt(record.number_copies);
        rec.instrumentation = record.instrumentation;
        rec.lang = record.lang;
        rec.notes = record.notes;
@@ -116,7 +119,7 @@ class App extends React.Component {
     })
       .then(res => {
         if(!res.ok) {
-          return res.json().then(error => Promise.reject(error))
+          return res.json().then(error => { throw error })
         } 
     })
       .then(() => {

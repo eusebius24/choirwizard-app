@@ -24,7 +24,7 @@ class ViewAll extends React.Component {
         } else  {
             const recordsList = this.context.records && this.context.records.map(record => {
                 return (
-                    <IndivRecord record={record} key={record.id} /> 
+                    <IndivRecord record={record} key={record.id} history={this.props.history} /> 
                 );
             })
         

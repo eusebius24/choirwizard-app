@@ -1,6 +1,7 @@
 import React from 'react';
-import { BrowserRouter, Redirect } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import ChoirWizardContext from '../../context/ChoirWizardContext';
+import { createBrowserHistory } from 'history';
 
 class IndivRecord extends React.Component {
     static contextType = ChoirWizardContext;
@@ -13,14 +14,12 @@ class IndivRecord extends React.Component {
     }
     
     handleSubmit = (e) => {
-        
-       // eslint-disable-next-line no-unused-expressions
-       <Redirect to={{
+       this.props.history.push({
            pathname: "/edit-music",
            state: {record: this.state.record}
-       }} />
+       })
+    
     }
-
     render() {
         return (
             <BrowserRouter>

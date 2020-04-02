@@ -23,32 +23,36 @@ class EditMusic extends React.Component {
     }
 
     handleSubmit = (e) => {
-        const history = createBrowserHistory();
         e.preventDefault();
         const { record } = this.props.location.state
-        const { title, composer, arranger, language, voices, numCopies, accompaniment, notes } = e.target
+        const title = document.getElementById("title").value;
+        const composer = document.getElementById("composer").value;
+        const arranger = document.getElementById("arranger").value;
+        const language = document.getElementById("language").value;
+        const voices = document.getElementById("voices").value;
+        const numCopies = document.getElementById("numCopies").value;
+        const accompaniment = document.getElementById("accompaniment").value;
+        const notes = document.getElementById("notes").value;
         const updatedRecord = {
             id: record.id,
-            title: title.value,
-            composer: composer.value, 
-            arranger: arranger.value,
-            lang: language.value,
-            voicing: voices.value,
-            number_copies: numCopies.value,
-            instrumentation: accompaniment.value,
-            notes: notes.value
+            title: title,
+            composer: composer, 
+            arranger: arranger,
+            lang: language,
+            voicing: voices,
+            number_copies: parseInt(numCopies),
+            instrumentation: accompaniment,
+            notes: notes
         }
         const recordId = updatedRecord.id;
         this.context.updateItemRequest(updatedRecord, recordId);
-        this.context.getAllRecords();
-        history.push("/view-all");
+        this.props.history.push("/view-all");
     }
 
 
     render() {
         const { error } = this.state;
         const { record } = this.props.location.state;
-        console.log("props:", this.props);
         return (
             <div className="container">
                 <NavBar />
@@ -63,7 +67,7 @@ class EditMusic extends React.Component {
                         </div>
                         <div className="form-section">
                             <label htmlFor="title" className="block-label">Title</label>
-                            <input type="text" id="title" defaultValue={record.title} required />
+                            <input type="text" id="title" required defaultValue={record.title} />
                         </div>
                         <div className="form-section">
                             <label htmlFor="composer" className="block-label">Composer</label>
@@ -103,7 +107,7 @@ class EditMusic extends React.Component {
                          </div>
                          <div className="form-section">
                             <label htmlFor="accompaniment" className="block-label">Accompaniment</label>
-                            <select name="accompaniment" id="accompaniment" defaultValue={record.instrumentation}>
+                            <select name="accompaniment" id="accompaniment" defaultValue={record.instrumentation}> 
                                 <option value="">--Please choose an option--</option>
                                 <option value="piano">Piano</option>
                                 <option value="organ">Organ</option>

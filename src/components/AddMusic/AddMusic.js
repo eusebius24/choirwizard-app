@@ -24,6 +24,7 @@ class AddMusic extends React.Component {
 
     handleSubmit = e => {
         e.preventDefault();
+        console.log("You clicked submit!");
         const { title, composer, arranger, language, voices, numCopies, accompaniment, notes } = e.target
         const newRecord = {
             title: title.value,
@@ -35,6 +36,7 @@ class AddMusic extends React.Component {
             instrumentation: accompaniment.value,
             notes: notes.value,
         }
+        console.log("newRecord:", newRecord);
        
         
         fetch(`${config.API_ENDPOINT}/music/`, {
