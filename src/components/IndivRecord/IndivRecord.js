@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import ChoirWizardContext from '../../context/ChoirWizardContext';
-import { createBrowserHistory } from 'history';
+
 
 class IndivRecord extends React.Component {
     static contextType = ChoirWizardContext;

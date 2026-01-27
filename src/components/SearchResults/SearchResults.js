@@ -12,7 +12,7 @@ class SearchResults extends React.Component {
         const { results } = this.props.location.state;
         if(!results) {
             return (<p className="message">Loading...</p>) 
-        } else if (results == "Id not found") {
+        } else if (results === "Id not found") {
             return (<p className="message">Id not found</p> )   
         } else {
             const resultsList = results.map(record => {
